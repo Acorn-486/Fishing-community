@@ -9,7 +9,7 @@
 <title>Fishing</title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="main.jsp">Fishing</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,14 +27,8 @@
 					<li class="nav-item"><a class="nav-link" href="#">민물 포인트</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">바다 포인트</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">낚시 용품</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">문의 게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="board.jsp">문의 게시판</a></li>
 				</ul>
-				<form class="d-flex">
-					<input class="form-control me-2" type="search" placeholder="검색어를 입력해주세요." style="width: 220px;" aria-label="Search">
-					<button class="btn btn-outline-success" type="submit">
-						<img src="resource/image/search-icon.png" alt="" width="30" height="30">
-					</button>
-				</form>
 			</div>
 		</div>
 	</nav>
