@@ -1,21 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="board.BoardDAO"%>
 <%@ page import="board.Board"%>
+<%@ page import="board.BoardDAO"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link rel="stylesheet" href="resource/css/bootstrap.css">
-<style type="text/css">
-	a, a:hover {
-		color: #000000;
-		text-decoration: none;
-	}
-</style>
 <title>Fishing</title>
 </head>
 <body>
@@ -24,10 +17,18 @@
 	if (session.getAttribute("userID") != null) {
 		userID = (String) session.getAttribute("userID");
 	}
-	int pageNumber = 1;
-	if (request.getParameter("pageNumber") != null) {
-		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+	int boardID = 0;
+	if (request.getParameter("boardID") != null) {
+		boardID = Integer.parseInt(request.getParameter("boardID"));
 	}
+	if (boardID == 0) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('존재하지 않는 글입니다.')");
+		script.println("location.href = 'board.jsp'");
+		script.println("</script>");
+	}
+	Board board = new BoardDAO().getBoard(boardID);
 	%>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 		<div class="container-fluid">
@@ -43,8 +44,8 @@
 					<%
 					if (userID == null) {
 					%>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">로그인</a>
 						<ul class="dropdown-menu dropdown-menu-dark"
 							aria-labelledby="navbarDropdown">
@@ -54,8 +55,8 @@
 					<%
 					} else {
 					%>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">회원관리</a>
 						<ul class="dropdown-menu dropdown-menu-dark"
 							aria-labelledby="navbarDropdown">
@@ -72,47 +73,43 @@
 			</div>
 		</div>
 	</nav>
-	
+
 	<div class="container">
 		<div class="row">
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
-						<th style="background-color: #eeeeee; text-align: center;">번호</th>
-						<th style="background-color: #eeeeee; text-align: center;">제목</th>
-						<th style="background-color: #eeeeee; text-align: center;">작성자</th>
-						<th style="background-color: #eeeeee; text-align: center;">작성일</th>
+						<th colspan="3" style="background-color: #eeeeee; text-align: center;">게시판 글보기</th>
 					</tr>
 				</thead>
 				<tbody>
-					<%
-						BoardDAO boardDAO = new BoardDAO();
-						ArrayList<Board> list = boardDAO.getList(pageNumber);
-						for (int i = 0; i < list.size(); i++) {
-					%>
-						<tr>
-							<td><%= list.get(i).getBoardID() %></td>
-							<td><a href="view.jsp?boardID=<%=list.get(i).getBoardID()%>"><%= list.get(i).getBoardTitle().replace(" ", "&nbps;").replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br>") %></a></td>
-							<td><%= list.get(i).getUserID() %></td>
-							<td><%= list.get(i).getBoardDate().substring(0, 11) + list.get(i).getBoardDate().substring(11, 13) + "시 " + list.get(i).getBoardDate().substring(14, 16) + "분" %></td>
-						</tr>
-					<%
-						}
-					%>
+					<tr>
+						<td style="width: 20%;">글 제목</td>
+						<td colspan="2"><%= board.getBoardTitle().replace(" ", "&nbps;").replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br>") %></td>
+					</tr>
+					<tr>
+						<td>작성자</td>
+						<td colspan="2"><%= board.getUserID() %></td>
+					</tr>
+					<tr>
+						<td>작성일</td>
+						<td colspan="2"><%= board.getBoardDate().substring(0, 11) + board.getBoardDate().substring(11, 13) + "시 " + board.getBoardDate().substring(14, 16) + "분" %></td>
+					</tr>
+					<tr>
+						<td>내용</td>
+						<td colspan="2" style="min-height: 200px; text-align: left;"><%= board.getBoardContent().replace(" ", "&nbps;").replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br>") %></td>
+					</tr>
 				</tbody>
 			</table>
+			<a href="board.jsp" class="btn btn-secondary" style="display: inline-block; width: 60px; height: 40px;">목록</a>
 			<%
-				if (pageNumber != 1) {
+				if (userID != null && userID.equals(board.getUserID())) {
 			%>
-				<a href="board.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn-success btn-arraw-left" style="display: inline-block; width: 60px; height: 40px;">이전</a>
-			<%
-				} if (boardDAO.nextPage(pageNumber + 1)) {
-			%>
-				<a href="board.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn-success btn-arraw-left" style="display: inline-block; width: 60px; height: 40px;">다음</a>
+				<a href="update.jsp?boardID=<%= boardID %>" class="btn btn-warning" style="display: inline-block; width: 60px; height: 40px;">수정</a>
+				<a href="deleteAction.jsp?boardID=<%= boardID %>" class="btn btn-danger" style="display: inline-block; width: 60px; height: 40px;">삭제</a>
 			<%
 				}
 			%>
-			<a href="write.jsp" class="btn btn-secondary" style="display: inline-block; width: 80px; height: 40px;">글쓰기</a>
 		</div>
 	</div>
 
