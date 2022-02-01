@@ -17,6 +17,12 @@
 	if (session.getAttribute("userID") != null) {
 		userID = (String) session.getAttribute("userID");
 	}
+	if (userID == null) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("location.href = 'login.jsp'");
+		script.println("</script>");
+	}
 	int boardID = 0;
 	if (request.getParameter("boardID") != null) {
 		boardID = Integer.parseInt(request.getParameter("boardID"));
@@ -29,6 +35,13 @@
 		script.println("</script>");
 	}
 	Board board = new BoardDAO().getBoard(boardID);
+	if (!userID.equals(board.getUserID())) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('권한이 없습니다.')");
+		script.println("location.href = 'board.jsp'");
+		script.println("</script>");
+	}
 	%>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 		<div class="container-fluid">
@@ -41,30 +54,14 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<%
-					if (userID == null) {
-					%>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-bs-toggle="dropdown" aria-expanded="false">로그인</a>
-						<ul class="dropdown-menu dropdown-menu-dark"
-							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="login.jsp">로그인</a></li>
-							<li><a class="dropdown-item" href="join.jsp">회원가입</a></li>
-						</ul></li>
-					<%
-					} else {
-					%>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">회원관리</a>
 						<ul class="dropdown-menu dropdown-menu-dark"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="logoutAction.jsp">로그아웃</a></li>
-						</ul></li>
-					<%
-					}
-					%>
+						</ul>
+					</li>
 					<li class="nav-item"><a class="nav-link" href="#">민물 포인트</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">바다 포인트</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">낚시 용품</a></li>
@@ -76,40 +73,25 @@
 
 	<div class="container">
 		<div class="row">
-			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
-				<thead>
-					<tr>
-						<th colspan="3" style="background-color: #eeeeee; text-align: center;">게시판 글보기</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td style="width: 20%;">글 제목</td>
-						<td colspan="2"><%= board.getBoardTitle().replace(" ", "&nbps;").replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br>") %></td>
-					</tr>
-					<tr>
-						<td>작성자</td>
-						<td colspan="2"><%= board.getUserID() %></td>
-					</tr>
-					<tr>
-						<td>작성일</td>
-						<td colspan="2"><%= board.getBoardDate().substring(0, 11) + board.getBoardDate().substring(11, 13) + "시 " + board.getBoardDate().substring(14, 16) + "분" %></td>
-					</tr>
-					<tr>
-						<td>내용</td>
-						<td colspan="2" style="min-height: 200px; text-align: left;"><%= board.getBoardContent().replace(" ", "&nbps;").replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br>") %></td>
-					</tr>
-				</tbody>
-			</table>
-			<a href="board.jsp" class="btn btn-secondary" style="display: inline-block; width: 60px; height: 40px;">목록</a>
-			<%
-				if (userID != null && userID.equals(board.getUserID())) {
-			%>
-				<a href="update.jsp?boardID=<%= boardID %>" class="btn btn-warning" style="display: inline-block; width: 60px; height: 40px;">수정</a>
-				<a onclick="return confirm('정말 삭제하시겠습니까?')" href="deleteAction.jsp?boardID=<%= boardID %>" class="btn btn-danger" style="display: inline-block; width: 60px; height: 40px;">삭제</a>
-			<%
-				}
-			%>
+			<form method="post" action="updateAction.jsp?boardID=<%= boardID %>">
+				<table class="table table-striped"
+					style="text-align: center; border: 1px solid #dddddd">
+					<thead>
+						<tr>
+							<th colspan="2" style="background-color: #eeeeee; text-align: center;">게시판 수정하기</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="text" class="form-control" placeholder="글 제목" name="boardTitle" maxlength="50" value="<%= board.getBoardTitle() %>"></td>
+						</tr>
+						<tr>
+							<td><textarea class="form-control" placeholder="글 내용" name="boardContent" maxlength="4000" style="height: 350px"><%= board.getBoardContent() %></textarea></td>
+						</tr>
+					</tbody>
+				</table>
+				<input type="submit" class="btn btn-secondary" value="수정하기">
+			</form>
 		</div>
 	</div>
 
