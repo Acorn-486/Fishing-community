@@ -59,15 +59,19 @@
 		</div>
 	</nav>
 
-	<div class="container">
-		<div class="jumbotron">
-			<div class="container">
-				<h1>웹 사이트 소개</h1>
-				<p>이 웹 사이트는 부트스트랩으로 만든 JSP 웹 사이트입니다.</p>
-				
-			</div>
-		</div>
-	</div>
+	<div id="map" style="width: 100%; height: 500px;"></div>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b729c72d0c369967c28ea19598cd8bd"></script>
+	<script>
+		var container = document.getElementById('map');
+    	var options = { 
+        	center: new kakao.maps.LatLng(33.450701, 126.570667),
+        	level: 3
+    	};
+
+		// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+		var map = new kakao.maps.Map(container, options); 
+	</script>
+
 	<script src="resource/js/bootstrap.js"></script>
 </body>
 </html>

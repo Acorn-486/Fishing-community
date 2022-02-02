@@ -62,8 +62,7 @@
 							<li><a class="dropdown-item" href="logoutAction.jsp">로그아웃</a></li>
 						</ul>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="#">민물 포인트</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">바다 포인트</a></li>
+					<li class="nav-item"><a class="nav-link" href="point.jsp">낚시 포인트</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">낚시 용품</a></li>
 					<li class="nav-item"><a class="nav-link" href="board.jsp">문의 게시판</a></li>
 				</ul>
