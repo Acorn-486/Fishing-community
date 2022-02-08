@@ -53,7 +53,7 @@
 					%>
 					<li class="nav-item"><a class="nav-link" href="point.jsp">낚시 포인트</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">낚시 용품</a></li>
-					<li class="nav-item"><a class="nav-link" href="board.jsp">문의 게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="board.jsp">자유 게시판</a></li>
 				</ul>
 			</div>
 		</div>
@@ -62,8 +62,7 @@
 	<div class="container">
 		<div class="row">
 			<form method="post" action="writeAction.jsp">
-				<table class="table table-striped"
-					style="text-align: center; border: 1px solid #dddddd">
+				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
 							<th colspan="2" style="background-color: #eeeeee; text-align: center;">게시판 글쓰기</th>

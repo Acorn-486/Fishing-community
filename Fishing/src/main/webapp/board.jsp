@@ -66,12 +66,17 @@
 					%>
 					<li class="nav-item"><a class="nav-link" href="point.jsp">낚시 포인트</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">낚시 용품</a></li>
-					<li class="nav-item"><a class="nav-link" href="board.jsp">문의 게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="board.jsp">자유 게시판</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	
+	<div class="container">
+		<br>
+		<h1>자유 게시판</h1>
+		<p>자유롭게 글을 쓰는 곳입니다. 서로 존중하며 글과 댓글을 남깁시다.</p>
+	</div>
 	<div class="container">
 		<div class="row">
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
@@ -91,7 +96,7 @@
 					%>
 						<tr>
 							<td><%= list.get(i).getBoardID() %></td>
-							<td><a href="view.jsp?boardID=<%=list.get(i).getBoardID()%>"><%= list.get(i).getBoardTitle().replace(" ", "&nbps;").replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br>") %></a></td>
+							<td><a href="view.jsp?boardID=<%=list.get(i).getBoardID()%>"><%= list.get(i).getBoardTitle().replaceAll(" ", "&nbps;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></a></td>
 							<td><%= list.get(i).getUserID() %></td>
 							<td><%= list.get(i).getBoardDate().substring(0, 11) + list.get(i).getBoardDate().substring(11, 13) + "시 " + list.get(i).getBoardDate().substring(14, 16) + "분" %></td>
 						</tr>
@@ -99,19 +104,23 @@
 						}
 					%>
 				</tbody>
+				<tr>
+					<td colspan="6">
+						<%
+							if (pageNumber != 1) {
+						%>
+							<a href="board.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn-success btn-arraw-left">이전</a>
+						<%
+							} if (boardDAO.nextPage(pageNumber + 1)) {
+						%>
+							<a href="board.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn-success btn-arraw-left">다음</a>
+						<%
+							}
+						%>
+						<a href="write.jsp" class="btn btn-secondary">글쓰기</a>
+					</td>
+				</tr>
 			</table>
-			<%
-				if (pageNumber != 1) {
-			%>
-				<a href="board.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn-success btn-arraw-left" style="display: inline-block; width: 60px; height: 40px;">이전</a>
-			<%
-				} if (boardDAO.nextPage(pageNumber + 1)) {
-			%>
-				<a href="board.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn-success btn-arraw-left" style="display: inline-block; width: 60px; height: 40px;">다음</a>
-			<%
-				}
-			%>
-			<a href="write.jsp" class="btn btn-secondary" style="display: inline-block; width: 80px; height: 40px;">글쓰기</a>
 		</div>
 	</div>
 

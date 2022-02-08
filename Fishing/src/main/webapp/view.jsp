@@ -3,6 +3,9 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="board.Board"%>
 <%@ page import="board.BoardDAO"%>
+<%@ page import="comment.Comment" %>
+<%@ page import="comment.CommentDAO" %>
+<%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,7 +70,7 @@
 					%>
 					<li class="nav-item"><a class="nav-link" href="point.jsp">낚시 포인트</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">낚시 용품</a></li>
-					<li class="nav-item"><a class="nav-link" href="board.jsp">문의 게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="board.jsp">자유 게시판</a></li>
 				</ul>
 			</div>
 		</div>
@@ -84,7 +87,7 @@
 				<tbody>
 					<tr>
 						<td style="width: 20%;">글 제목</td>
-						<td colspan="2"><%= board.getBoardTitle().replace(" ", "&nbps;").replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br>") %></td>
+						<td colspan="2"><%= board.getBoardTitle().replaceAll(" ", "&nbps;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
@@ -96,21 +99,84 @@
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td colspan="2" style="min-height: 200px; text-align: left;"><%= board.getBoardContent().replace(" ", "&nbps;").replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br>") %></td>
+						<td colspan="2" style="min-height: 200px; text-align: left;"><%= board.getBoardContent().replaceAll(" ", "&nbps;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></td>
 					</tr>
 				</tbody>
+				<tr>
+					<td colspan="6">
+						<a href="board.jsp" class="btn btn-secondary">목록</a>
+						<%
+							if (userID != null && userID.equals(board.getUserID())) {
+						%>
+						<a href="update.jsp?boardID=<%= boardID %>" class="btn btn-warning">수정</a>
+						<a onclick="return confirm('정말 삭제하시겠습니까?')" href="deleteAction.jsp?boardID=<%= boardID %>" class="btn btn-danger">삭제</a>
+						<%
+							}
+						%>
+					</td>
+				</tr>
 			</table>
-			<a href="board.jsp" class="btn btn-secondary" style="display: inline-block; width: 60px; height: 40px;">목록</a>
-			<%
-				if (userID != null && userID.equals(board.getUserID())) {
-			%>
-				<a href="update.jsp?boardID=<%= boardID %>" class="btn btn-warning" style="display: inline-block; width: 60px; height: 40px;">수정</a>
-				<a onclick="return confirm('정말 삭제하시겠습니까?')" href="deleteAction.jsp?boardID=<%= boardID %>" class="btn btn-danger" style="display: inline-block; width: 60px; height: 40px;">삭제</a>
-			<%
-				}
-			%>
 		</div>
 	</div>
+
+<div class="container">
+			<div class="row">
+				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+					<tbody>
+					<tr>
+						<td align="left" bgcolor="beige">댓글</td>
+					</tr>
+					<tr><td>
+						<%
+							CommentDAO commentDAO = new CommentDAO();
+							ArrayList<Comment> list = commentDAO.getList(boardID);
+							for(int i=0; i<list.size(); i++){
+						%>
+							<div class="container">
+								<div class="row">
+									<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+										<tbody>
+										<tr>						
+										<td align="left"><%= list.get(i).getUserID() %></td>
+										<td align="right"><%= list.get(i).getCommentDate().substring(0,11) + list.get(i).getCommentDate().substring(11, 13) + "시 " + list.get(i).getCommentDate().substring(14, 16) + "분" %></td>
+										</tr>
+										<tr>
+										<td align="left"><%= list.get(i).getCommentContent().replaceAll(" ", "&nbps;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></td>
+										<td align="right">
+											<%
+												if(list.get(i).getUserID() != null && list.get(i).getUserID().equals(userID)){
+											%>
+												<a onclick="return confirm('정말로 삭제하시겠습니까?')" href = "commentDeleteAction.jsp?boardID=<%= boardID %>&commentID=<%= list.get(i).getCommentID() %>" class="btn btn-danger btn-sm">삭제</a>
+																	
+											<%
+												}
+											%>	
+										</td>
+										</tr>
+									</tbody>
+								</table>			
+							</div>
+						</div>
+						<%
+							}
+						%>
+					</td></tr>
+				</table>
+			</div>
+		</div>
+		<div class="container">
+			<div class="form-group">
+			<form method="post" action="commentAction.jsp?boardID=<%=boardID%>">
+					<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+						<tr>
+							<td style="border-bottom:none;" valign="middle"><%=userID %></td>
+							<td><input type="text" style="height: 80px;" class="form-control" placeholder="상대방을 존중하는 댓글을 남깁시다." name = "commentContent" maxlength="100"></td>
+							<td><br><input type="submit" class="btn btn-secondary" value="댓글 작성"></td>
+						</tr>
+					</table>
+			</form>
+			</div>
+		</div>
 
 	<script src="resource/js/bootstrap.js"></script>
 </body>
