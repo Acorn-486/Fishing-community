@@ -61,7 +61,7 @@
 	</nav>
 
 	<div id="map" style="width: 100%; height: 650px;"></div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b729c72d0c369967c28ea19598cd8bd&libraries=services,clusterer,drawing"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=44cf30f7d078d52d726819589c8d6154&libraries=services,clusterer,drawing"></script>
 	<script>
 		var map = new kakao.maps.Map(document.getElementById('map'), {
 			center: new kakao.maps.LatLng(37.10253668088127, 127.9185480397783),
@@ -71,7 +71,7 @@
 		var clusterer = new kakao.maps.MarkerClusterer({
             map: map,
             averageCenter: true,
-            minLevel: 6
+            minLevel: 4
         });
 		
 		$.get("resource/data/point.json", function (data) {
