@@ -9,8 +9,10 @@ request.setCharacterEncoding("UTF-8");
 <jsp:setProperty name="user" property="userID" />
 <jsp:setProperty name="user" property="userPassword" />
 <jsp:setProperty name="user" property="userName" />
+<jsp:setProperty name="user" property="userBirth" />
 <jsp:setProperty name="user" property="userGender" />
 <jsp:setProperty name="user" property="userEmail" />
+<jsp:setProperty name="user" property="userPhone" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,16 +51,28 @@ request.setCharacterEncoding("UTF-8");
 		script.println("alert('이름을 입력하지 않았습니다.')");
 		script.println("history.back()");
 		script.println("</script>");
-	} else if (user.getUserGender() == null) {
+	} else if (user.getUserBirth() == null) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('성별을 선택하지 않았습니다.')");
+		script.println("alert('생년월일을 입력하지 않았습니다.')");
 		script.println("history.back()");
 		script.println("</script>");
 	} else if (user.getUserEmail() == null) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('이메일을 입력하지 않았습니다.')");
+		script.println("history.back()");
+		script.println("</script>");
+	} else if (user.getUserGender() == null) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('성별을 선택하지 않았습니다.')");
+		script.println("history.back()");
+		script.println("</script>");
+	} else if (user.getUserGender() == null) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('핸드폰번호를 입력하지 않았습니다.')");
 		script.println("history.back()");
 		script.println("</script>");
 	} else {

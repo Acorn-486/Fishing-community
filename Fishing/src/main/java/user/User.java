@@ -7,7 +7,17 @@ public class User {
 	private String userName;
 	private String userGender;
 	private String userEmail;
+	private String userBirth;
+	private String userPhone;
 	
+	public String getUserPhone() {
+		return userPhone;
+	}
+
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
+	}
+
 	public String getUserID() {
 		return userID;
 	}
@@ -48,4 +58,11 @@ public class User {
 		this.userEmail = userEmail;
 	}
 	
+	public String getUserBirth() {
+		return userBirth;
+	}
+
+	public void setUserBirth(String userBirth) {
+		this.userBirth = userBirth;
+	}
 }

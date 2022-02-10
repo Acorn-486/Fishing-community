@@ -33,46 +33,54 @@
 	</nav>
 
 	<div class="container">
-		<div class="col-lg-4"></div>
-		<div class="col-lg-4">
-			<div class="jumbotron" style="padding-top:100px;">
-				<form method="post" action="joinAction.jsp" autocomplete="off">
-					<h3 style="text-align: center;">회원가입 화면</h3>
-					<br>
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="아이디" name="userID" maxlength="20">
-					</div>
-					<br>
-					<div class="form-group">
-						<input type="password" class="form-control" placeholder="비밀번호" name="userPassword" maxlength="20">
-					</div>
-					<br>
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="이름" name="userName" maxlength="20">
-					</div>
-					<br>
-					<div class="form-group" style="text-align: center;">
-						<div class="btn-group" data-toggle="buttons">
-							<label class="btn btn-primary">
-								<input type="radio" name="userGender" value="남자" checked>남자
-							</label>
-							<label class="btn btn-primary">
-								<input type="radio" name="userGender" value="여자" checked>여자
-							</label>
-						</div>
-					</div>
-					<br>
-					<div class="form-group">
-						<input type="email" class="form-control" placeholder="이메일" name="userEmail" maxlength="20">
-					</div>
-					<br>
-					<input type="submit" class="btn btn-primary form-control" value="회원가입">
-				</form>
-			</div>
+		<div class="jumbotron" style="padding-top: 100px;">
+			<form method="post" action="joinAction.jsp" autocomplete="off">
+				<h1 style="text-align: center;">Fishing</h1>
+				<table style="width: 60%; margin: auto;">
+					<tr>
+						<td>아이디</td>
+						<td><input type="text" class="form-control" placeholder="아이디"
+							name="userID" maxlength="20"></td>
+					</tr>
+					<tr>
+						<td>비밀번호</td>
+						<td><input type="password" class="form-control"
+							placeholder="비밀번호" name="userPassword" maxlength="20"></td>
+					</tr>
+					<tr>
+						<td>이름</td>
+						<td><input type="text" class="form-control" placeholder="이름"
+							name="userName" maxlength="20"></td>
+					</tr>
+					<tr>
+						<td>생년월일</td>
+						<td><input type="text" class="form-control"
+							placeholder="ex) 19950509" name="userBirth" maxlength="8"></td>
+					</tr>
+					<tr>
+						<td>이메일</td>
+						<td><input type="email" class="form-control"
+							placeholder="이메일" name="userEmail" maxlength="20"></td>
+					</tr>
+					<tr>
+						<td>성별</td>
+						<td>
+							 <input type="radio" name="userGender" value="남자">남자
+							 <input type="radio" name="userGender" value="여자">여자
+						</td>
+					</tr>
+					<tr>
+						<td>휴대폰</td>
+						<td><input type="text" class="form-control"
+							placeholder="ex) 010-1234-5678" name="userPhone" maxlength="20"></td>
+					</tr>
+				</table>
+				<br> <input type="submit" class="btn btn-primary form-control"
+					value="회원가입">
+			</form>
 		</div>
-		<div class="col-lg-4"></div>
 	</div>
- 
+
 	<script src="resource/js/bootstrap.js"></script>
 </body>
 </html>

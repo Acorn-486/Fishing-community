@@ -635,6 +635,13 @@ progress {
   margin-left: auto;
 }
 
+.jumbotron {
+  padding: 30px 15px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color: #eee;
+}
+
 @media (min-width: 576px) {
   .container-sm, .container {
     max-width: 540px;

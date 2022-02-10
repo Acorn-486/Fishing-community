@@ -33,8 +33,6 @@
 	</nav>
 
 	<div class="container">
-		<div class="col-lg-4"></div>
-		<div class="col-lg-4">
 			<div class="jumbotron" style="padding-top:100px;">
 				<form method="post" action="loginAction.jsp" autocomplete="off">
 					<h3 style="text-align: center;">로그인화면</h3>
@@ -51,8 +49,6 @@
 				</form>
 			</div>
 		</div>
-		<div class="col-lg-4"></div>
-	</div>
  
 	<script src="resource/js/bootstrap.js"></script>
 </body>
