@@ -636,10 +636,11 @@ progress {
 }
 
 .jumbotron {
-  padding: 30px 15px;
-  margin-bottom: 30px;
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
   color: inherit;
   background-color: #eee;
+  border-radius:.3rem;
 }
 
 @media (min-width: 576px) {
