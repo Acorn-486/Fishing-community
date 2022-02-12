@@ -14,6 +14,11 @@
 </head>
 <body>
 	<%
+	String userID = null;
+	if (session.getAttribute("userID") != null) {
+		userID = (String) session.getAttribute("userID");
+	}
+	
 	int pageNumber = 1;
 	if (request.getParameter("pageNumber") != null) {
 		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
@@ -38,7 +43,7 @@
 				<tbody>
 					<%
 						ProductDAO productDAO = new ProductDAO();
-						ArrayList<Product> list = productDAO.getList(pageNumber);
+						ArrayList<Product> list = productDAO.getRodList(pageNumber);
 						for (int i = 0; i < list.size(); i++) {
 					%>
 						<tr>
@@ -62,6 +67,7 @@
 						<%
 							}
 						%>
+						<a href="addProduct.jsp" class="btn btn-secondary">상품 등록</a>
 					</td>
 				</tr>
 			</table>

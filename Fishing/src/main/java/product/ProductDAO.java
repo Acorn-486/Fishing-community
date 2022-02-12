@@ -40,13 +40,40 @@ public class ProductDAO {
 		return -1;
 	}
 	
-	public ArrayList<Product> getList(int pageNumber) {
-		String SQL = "SELECT * FROM product WHERE productID < ? ORDER BY productID DESC LIMIT 10";
+	public ArrayList<Product> getRodList(int pageNumber) {
+		String SQL = "SELECT * FROM product WHERE productID < ? AND productCategory = ? ORDER BY productID DESC LIMIT 10";
 		ArrayList<Product> list = new ArrayList<Product>();
 		
 		try {
 			PreparedStatement pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+			pstmt.setString(2, "낚시대");
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Product product = new Product();
+				product.setProductID(rs.getInt(1));
+				product.setProductName(rs.getString(2));
+				product.setProductPrice(rs.getString(3));
+				product.setProductDetail(rs.getString(4));
+				product.setProductCategory(rs.getString(5));
+				product.setProductStock(rs.getInt(6));
+				product.setProductImage(rs.getString(7));
+				list.add(product);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public ArrayList<Product> getReelList(int pageNumber) {
+		String SQL = "SELECT * FROM product WHERE productID < ? AND productCategory = ? ORDER BY productID DESC LIMIT 10";
+		ArrayList<Product> list = new ArrayList<Product>();
+		
+		try {
+			PreparedStatement pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+			pstmt.setString(2, "낚시대");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Product product = new Product();
@@ -81,4 +108,25 @@ public class ProductDAO {
 		}
 		return false;
 	}
+	
+	public int add(String productName, String productPrice, String productDetail, String productCategory, Integer productStock, String productImage) {
+		String SQL = "INSERT INTO product VALUES (?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			PreparedStatement pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, getNext());
+			pstmt.setString(2, productName);
+			pstmt.setString(3, productPrice);
+			pstmt.setString(4, productDetail);
+			pstmt.setString(5, productCategory);
+			pstmt.setInt(6, productStock);
+			pstmt.setString(7, productImage);
+			
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
 }

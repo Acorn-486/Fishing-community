@@ -38,7 +38,7 @@
 				<tbody>
 					<%
 						ProductDAO productDAO = new ProductDAO();
-						ArrayList<Product> list = productDAO.getList(pageNumber);
+						ArrayList<Product> list = productDAO.getReelList(pageNumber);
 						for (int i = 0; i < list.size(); i++) {
 					%>
 						<tr>
@@ -62,6 +62,7 @@
 						<%
 							}
 						%>
+						<a href="addProduct.jsp" class="btn btn-secondary">상품 등록</a>
 					</td>
 				</tr>
 			</table>
