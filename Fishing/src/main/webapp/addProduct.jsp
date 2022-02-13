@@ -44,7 +44,8 @@
 			<div class="form-group row">
 				<label class="col-sm-2">카테고리</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" placeholder="카테고리" name="productCategory" maxlength="30">
+					<input type="radio" name="productCategory" value="낚시대">낚시대
+					<input type="radio" name="productCategory" value="릴">릴
 				</div>
 			</div>
 			
@@ -67,9 +68,7 @@
 					<input type="submit" class="btn btn-primary" value="등록" >
 				</div>
 			</div>
-			
 		</form>
-		
 	</div>
 
 	<script src="resource/js/bootstrap.js"></script>

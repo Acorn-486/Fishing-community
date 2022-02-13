@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.io.File" %>
+<%@ page import="java.util.Enumeration" %>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@ page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page import="product.ProductDAO"%>
 <%@ page import="java.io.PrintWriter"%>
 <%
@@ -28,6 +32,7 @@ request.setCharacterEncoding("UTF-8");
 	if (userID == null) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
+		script.println("alert('로그인을 해주세요.')");
 		script.println("location.href = 'login.jsp'");
 		script.println("</script>");
 	} else {
@@ -77,10 +82,15 @@ request.setCharacterEncoding("UTF-8");
 				script.println("alert('상품 등록에 실패했습니다.')");
 				script.println("history.back()");
 				script.println("</script>");
-			} else {
+			} else if (product.getProductCategory().equals("낚시대")){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("location.href = 'board.jsp'");
+				script.println("location.href = 'rodlist.jsp'");
+				script.println("</script>");
+			} else if (product.getProductCategory().equals("릴")){
+				PrintWriter script = response.getWriter();
+				script.println("<script>");
+				script.println("location.href = 'reellist.jsp'");
 				script.println("</script>");
 			}
 		}	

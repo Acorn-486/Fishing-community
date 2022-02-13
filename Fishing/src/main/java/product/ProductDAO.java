@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import board.Board;
+
 public class ProductDAO {
 	
 	private Connection con;
@@ -73,7 +75,7 @@ public class ProductDAO {
 		try {
 			PreparedStatement pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
-			pstmt.setString(2, "낚시대");
+			pstmt.setString(2, "릴");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Product product = new Product();
@@ -129,4 +131,28 @@ public class ProductDAO {
 		return -1;
 	}
 	
+	public Product getProduct(int productID) {
+		String SQL = "SELECT * FROM product WHERE productID = ?";
+		
+		try {
+			PreparedStatement pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, productID);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				Product product = new Product();
+				product.setProductID(rs.getInt(1));
+				product.setProductName(rs.getString(2));
+				product.setProductPrice(rs.getString(3));
+				product.setProductDetail(rs.getString(4));
+				product.setProductCategory(rs.getString(5));
+				product.setProductStock(rs.getInt(6));
+				product.setProductImage(rs.getString(7));
+				return product;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
