@@ -7,8 +7,9 @@ public class Product {
 	private String productPrice;
 	private String productDetail;
 	private String productCategory;
-	private int productStock;
+	private String productStock;
 	private String productImage;
+	private String userID;
 	
 	public int getProductID() {
 		return productID;
@@ -45,10 +46,10 @@ public class Product {
 		this.productCategory = productCategory;
 	}
 	
-	public int getProductStock() {
+	public String getProductStock() {
 		return productStock;
 	}
-	public void setProductStock(int productStock) {
+	public void setProductStock(String productStock) {
 		this.productStock = productStock;
 	}
 	
@@ -57,5 +58,12 @@ public class Product {
 	}
 	public void setProductImage(String productImage) {
 		this.productImage = productImage;
+	}
+	
+	public String getUserID() {
+		return userID;
+	}
+	public void setUserID(String userID) {
+		this.userID = userID;
 	}
 }

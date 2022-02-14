@@ -23,6 +23,8 @@
 	if (request.getParameter("pageNumber") != null) {
 		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 	}
+	
+	Product product = new Product();
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 	
@@ -65,9 +67,12 @@
 						%>
 							<a href="rodlist.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn-success btn-arraw-left">다음</a>
 						<%
-							}
+							} if (userID != null && userID.equals("admin")) {
 						%>
 						<a href="addProduct.jsp" class="btn btn-secondary">상품 등록</a>
+						<%
+							}
+						%>
 					</td>
 				</tr>
 			</table>

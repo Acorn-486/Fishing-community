@@ -1,17 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="product.ProductDAO"%>
 <%@ page import="java.io.PrintWriter"%>
+<%@ page import="product.Product"%>
+<%@ page import="product.ProductDAO"%>
 <%
 request.setCharacterEncoding("UTF-8");
 %>
-<jsp:useBean id="product" class="product.Product" scope="page" />
-<jsp:setProperty name="product" property="productName" />
-<jsp:setProperty name="product" property="productPrice" />
-<jsp:setProperty name="product" property="productDetail" />
-<jsp:setProperty name="product" property="productCategory" />
-<jsp:setProperty name="product" property="productStock" />
-<jsp:setProperty name="product" property="productImage" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,38 +25,58 @@ request.setCharacterEncoding("UTF-8");
 		script.println("alert('로그인을 해주세요.')");
 		script.println("location.href = 'login.jsp'");
 		script.println("</script>");
+	} 
+	int productID = 0;
+	if (request.getParameter("productID") != null) {
+		productID = Integer.parseInt(request.getParameter("productID"));
+	}
+	if (productID == 0) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('존재하지 않는 상품입니다.')");
+		script.println("history.back()");
+		script.println("</script>");
+	}
+	
+	Product product = new ProductDAO().getProduct(productID);
+	if (!userID.equals(product.getUserID())) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('권한이 없습니다.')");
+		script.println("history.back()");
+		script.println("</script>");
 	} else {
-		if (product.getProductName() == null) {
+		if (request.getParameter("productName") == null || request.getParameter("productName").equals("")) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('상품명을 입력하지 않았습니다.')");
 			script.println("history.back()");
 			script.println("</script>");
-		} else if (product.getProductPrice() == null) {
+		} else if (request.getParameter("productPrice") == null || request.getParameter("productPrice").equals("")) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('상품 가격을 입력하지 않았습니다.')");
 			script.println("history.back()");
 			script.println("</script>");
-		} else if (product.getProductDetail() == null) {
+		} else if (request.getParameter("productDetail") == null || request.getParameter("productDetail").equals("")) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('상세 정보를 입력하지 않았습니다.')");
 			script.println("history.back()");
 			script.println("</script>");
-		} else if (product.getProductCategory() == null) {
+		} else if (request.getParameter("productCategory") == null || request.getParameter("productCategory").equals("")) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('카테고리를 입력하지 않았습니다.')");
 			script.println("history.back()");
 			script.println("</script>");
-		} else if (product.getProductStock() == null) {
+		} else if (request.getParameter("productStock") == null || request.getParameter("productStock").equals("")) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('재고 수량이 없습니다.')");
 			script.println("history.back()");
 			script.println("</script>");
-		} else if (product.getProductImage() == null) {
+		} else if (request.getParameter("productImage") == null || request.getParameter("productImage").equals("")) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('상품 사진을 등록하지 않았습니다.')");
@@ -70,7 +84,7 @@ request.setCharacterEncoding("UTF-8");
 			script.println("</script>");
 		} else {
 			ProductDAO productDAO = new ProductDAO();
-			int result = productDAO.add(product.getProductName(), product.getProductPrice(), product.getProductDetail(), product.getProductCategory(), product.getProductStock(), product.getProductImage(), userID);
+			int result = productDAO.update(productID, request.getParameter("productName"), request.getParameter("productPrice"), request.getParameter("productDetail"), request.getParameter("productStock"), request.getParameter("productImage"));
 
 			if (result == -1) {
 				PrintWriter script = response.getWriter();

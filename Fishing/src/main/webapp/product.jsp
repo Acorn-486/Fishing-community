@@ -55,6 +55,10 @@
 						<td colspan="2"><%= product.getProductStock() %></td>
 					</tr>
 					<tr>
+						<td>상품 사진</td>
+						<td colspan="2"><%= product.getProductImage() %></td>
+					</tr>
+					<tr>
 						<td>상세 설명</td>
 						<td colspan="2" style="min-height: 200px; text-align: left;"><%= product.getProductDetail() %></td>
 					</tr>
@@ -70,10 +74,13 @@
 						%>
 						<a href="reellist.jsp" class="btn btn-secondary">상품 목록</a>
 						<%
+							} if (userID != null && userID.equals("admin")) {
+						%>
+						<a href="productUpdate.jsp?productID=<%= productID %>" class="btn btn-warning">수정</a>
+						<a onclick="return confirm('정말 삭제하시겠습니까?')" href="#" class="btn btn-danger">삭제</a>
+						<%
 							}
 						%>
-						<a href="#" class="btn btn-warning">수정</a>
-						<a onclick="return confirm('정말 삭제하시겠습니까?')" href="#" class="btn btn-danger">삭제</a>
 					</td>
 				</tr>
 			</table>

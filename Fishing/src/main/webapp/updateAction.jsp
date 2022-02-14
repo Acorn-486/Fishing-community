@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter"%>
 <%@ page import="board.Board"%>
 <%@ page import="board.BoardDAO"%>
-<%@ page import="java.io.PrintWriter"%>
 <%
 request.setCharacterEncoding("UTF-8");
 %>
@@ -37,6 +37,7 @@ request.setCharacterEncoding("UTF-8");
 		script.println("location.href = 'board.jsp'");
 		script.println("</script>");
 	}
+	
 	Board board = new BoardDAO().getBoard(boardID);
 	if (!userID.equals(board.getUserID())) {
 		PrintWriter script = response.getWriter();

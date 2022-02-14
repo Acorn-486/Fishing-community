@@ -20,6 +20,7 @@
 	if (userID == null) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
+		script.println("alert('로그인을 해주세요.')");
 		script.println("location.href = 'login.jsp'");
 		script.println("</script>");
 	}
@@ -48,8 +49,7 @@
 	<div class="container">
 		<div class="row">
 			<form method="post" action="updateAction.jsp?boardID=<%= boardID %>">
-				<table class="table table-striped"
-					style="text-align: center; border: 1px solid #dddddd">
+				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
 							<th colspan="2" style="background-color: #eeeeee; text-align: center;">게시판 수정하기</th>

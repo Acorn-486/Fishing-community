@@ -19,7 +19,7 @@
 	</div>
 	
 	<div class="container">
-		<form method="post" action="addProductAction.jsp" enctype="multipart/form-data">
+		<form method="post" action="addProductAction.jsp">
 			<div class="form-group row">
 				<label class="col-sm-2">상품명</label>
 				<div class="col-sm-5">
