@@ -30,9 +30,9 @@
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
-						<th style="background-color: #eeeeee; text-align: center;">상품사진</th>
 						<th style="background-color: #eeeeee; text-align: center;">상품명</th>
 						<th style="background-color: #eeeeee; text-align: center;">가격</th>
+						<th style="background-color: #eeeeee; text-align: center;">재고수</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -42,9 +42,9 @@
 						for (int i = 0; i < list.size(); i++) {
 					%>
 						<tr>
-							<td><a href="product.jsp?productID=<%=list.get(i).getProductID() %>"><%= list.get(i).getProductImage() %></a></td>
-							<td><%= list.get(i).getProductName() %></td>
+							<td onClick="location.href='product.jsp?productID=<%=list.get(i).getProductID() %>'" style="cursor:pointer;"><%= list.get(i).getProductName() %></td>
 							<td><%= list.get(i).getProductPrice() %></td>
+							<td><%= list.get(i).getProductStock() %></td>
 					<%
 						}
 					%>

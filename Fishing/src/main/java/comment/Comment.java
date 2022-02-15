@@ -7,7 +7,6 @@ public class Comment {
 	private String userID;
 	private String commentDate;
 	private String commentContent;
-	private int commentAvailable;
 	
 	public int getBoardID() {
 		return boardID;
@@ -38,11 +37,5 @@ public class Comment {
 	}
 	public void setCommentContent(String commentContent) {
 		this.commentContent = commentContent;
-	}
-	public int getCommentAvailable() {
-		return commentAvailable;
-	}
-	public void setCommentAvailable(int commentAvailable) {
-		this.commentAvailable = commentAvailable;
 	}
 }

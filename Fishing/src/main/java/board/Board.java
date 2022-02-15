@@ -7,7 +7,6 @@ public class Board {
 	private String userID;
 	private String boardDate;
 	private String boardContent;
-	private int boardAvailable;
 	
 	public int getBoardID() {
 		return boardID;
@@ -38,11 +37,5 @@ public class Board {
 	}
 	public void setBoardContent(String boardContent) {
 		this.boardContent = boardContent;
-	}
-	public int getBoardAvailable() {
-		return boardAvailable;
-	}
-	public void setBoardAvailable(int boardAvailable) {
-		this.boardAvailable = boardAvailable;
 	}
 }

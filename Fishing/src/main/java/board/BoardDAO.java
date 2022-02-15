@@ -56,7 +56,7 @@ public class BoardDAO {
 	}
 	
 	public int write(String boardTitle, String userID, String boardContent) {
-		String SQL = "INSERT INTO BOARD VALUES (?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO BOARD VALUES (?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement pstmt = con.prepareStatement(SQL);
@@ -65,7 +65,6 @@ public class BoardDAO {
 			pstmt.setString(3, userID);
 			pstmt.setString(4, getDate());
 			pstmt.setString(5, boardContent);
-			pstmt.setInt(6, 1);
 			
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -75,7 +74,7 @@ public class BoardDAO {
 	}
 	
 	public ArrayList<Board> getList(int pageNumber) {
-		String SQL = "SELECT * FROM BOARD WHERE boardID < ? AND boardAvailable = 1 ORDER BY boardID DESC LIMIT 10";
+		String SQL = "SELECT * FROM BOARD WHERE boardID < ? ORDER BY boardID DESC LIMIT 10";
 		ArrayList<Board> list = new ArrayList<Board>();
 		
 		try {
@@ -89,7 +88,6 @@ public class BoardDAO {
 				board.setUserID(rs.getString(3));
 				board.setBoardDate(rs.getString(4));
 				board.setBoardContent(rs.getString(5));
-				board.setBoardAvailable(rs.getInt(6));
 				list.add(board);
 			}
 		} catch (Exception e) {
@@ -99,7 +97,7 @@ public class BoardDAO {
 	}
 	
 	public boolean nextPage(int pageNumber) {
-		String SQL = "SELECT * FROM BOARD WHERE boardID < ? AND boardAvailable = 1";
+		String SQL = "SELECT * FROM BOARD WHERE boardID < ?";
 		
 		try {
 			PreparedStatement pstmt = con.prepareStatement(SQL);
@@ -130,7 +128,6 @@ public class BoardDAO {
 				board.setUserID(rs.getString(3));
 				board.setBoardDate(rs.getString(4));
 				board.setBoardContent(rs.getString(5));
-				board.setBoardAvailable(rs.getInt(6));
 				return board;
 			}
 		} catch (Exception e) {
@@ -156,7 +153,7 @@ public class BoardDAO {
 	}
 	
 	public int delete(int boardID) {
-		String SQL = "UPDATE BOARD SET boardAvailable = 0 WHERE boardID = ?";
+		String SQL = "DELETE FROM board WHERE boardID = ?";
 		
 		try {
 			PreparedStatement pstmt = con.prepareStatement(SQL);

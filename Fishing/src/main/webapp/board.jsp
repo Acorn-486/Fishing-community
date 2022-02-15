@@ -10,12 +10,6 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link rel="stylesheet" href="resource/css/bootstrap.css">
-<style type="text/css">
-	a, a:hover {
-		color: #000000;
-		text-decoration: none;
-	}
-</style>
 <title>Fishing</title>
 </head>
 <body>
@@ -51,7 +45,7 @@
 					%>
 						<tr>
 							<td><%= list.get(i).getBoardID() %></td>
-							<td><a href="view.jsp?boardID=<%=list.get(i).getBoardID()%>"><%= list.get(i).getBoardTitle().replaceAll(" ", "&nbps;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></a></td>
+							<td onClick="location.href='view.jsp?boardID=<%=list.get(i).getBoardID() %>'" style="cursor:pointer;"><%= list.get(i).getBoardTitle().replaceAll(" ", "&nbps;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></td>
 							<td><%= list.get(i).getUserID() %></td>
 							<td><%= list.get(i).getBoardDate().substring(0, 11) + list.get(i).getBoardDate().substring(11, 13) + "시 " + list.get(i).getBoardDate().substring(14, 16) + "분" %></td>
 						</tr>

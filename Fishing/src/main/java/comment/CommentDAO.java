@@ -56,7 +56,7 @@ public class CommentDAO {
 	}
 	
 	public int write(int boardID, String userID, String commentContent) {
-		String SQL = "INSERT INTO comment VALUES (?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO comment VALUES (?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement pstmt = con.prepareStatement(SQL);
@@ -65,7 +65,6 @@ public class CommentDAO {
 			pstmt.setString(3, userID);
 			pstmt.setString(4, getDate());
 			pstmt.setString(5, commentContent);
-			pstmt.setInt(6, 1);
 			
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -75,7 +74,7 @@ public class CommentDAO {
 	}
 	
 	public ArrayList<Comment> getList(int boardID) {
-		String SQL = "SELECT * FROM comment WHERE boardID = ? AND commentAvailable = 1 ORDER BY boardID DESC";
+		String SQL = "SELECT * FROM comment WHERE boardID = ? ORDER BY boardID DESC";
 		ArrayList<Comment> list = new ArrayList<Comment>();
 		
 		try {
@@ -89,7 +88,6 @@ public class CommentDAO {
 				comment.setUserID(rs.getString(3));
 				comment.setCommentDate(rs.getString(4));
 				comment.setCommentContent(rs.getString(5));
-				comment.setCommentAvailable(rs.getInt(6));
 				list.add(comment);
 			}
 		} catch (Exception e) {
@@ -113,7 +111,6 @@ public class CommentDAO {
 				comment.setUserID(rs.getString(3));
 				comment.setCommentDate(rs.getString(4));
 				comment.setCommentContent(rs.getString(5));
-				comment.setCommentAvailable(rs.getInt(6));
 				return comment;
 			}
 		} catch (Exception e) {
@@ -138,7 +135,7 @@ public class CommentDAO {
 	}
 	
 	public int delete(int commentID) {
-		String SQL = "UPDATE comment SET commentAvailable = 0 WHERE commentID = ?";
+		String SQL = "DELETE FROM comment WHERE commentID = ?";
 		
 		try {
 			PreparedStatement pstmt = con.prepareStatement(SQL);

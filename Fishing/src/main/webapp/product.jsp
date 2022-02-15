@@ -77,7 +77,7 @@
 							} if (userID != null && userID.equals("admin")) {
 						%>
 						<a href="productUpdate.jsp?productID=<%= productID %>" class="btn btn-warning">수정</a>
-						<a onclick="return confirm('정말 삭제하시겠습니까?')" href="#" class="btn btn-danger">삭제</a>
+						<a onclick="return confirm('정말 삭제하시겠습니까?')" href="productDeleteAction.jsp?productID=<%= productID %>" class="btn btn-danger">삭제</a>
 						<%
 							}
 						%>
