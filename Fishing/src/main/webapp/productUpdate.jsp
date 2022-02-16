@@ -78,8 +78,19 @@
 			<div class="form-group row">
 				<label class="col-sm-2">카테고리</label>
 				<div class="col-sm-5">
-					<input type="radio" name="productCategory" value="낚시대">낚시대
+					<%
+						if (product.getProductCategory().equals("낚시대")) {
+					%>
+					<input type="radio" name="productCategory" value="낚시대" checked>낚시대
 					<input type="radio" name="productCategory" value="릴">릴
+					<%
+						} else {
+					%>
+					<input type="radio" name="productCategory" value="낚시대">낚시대
+					<input type="radio" name="productCategory" value="릴" checked>릴
+					<%
+						}
+					%>
 				</div>
 			</div>
 			

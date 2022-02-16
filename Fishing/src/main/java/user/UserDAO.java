@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import board.Board;
+
 public class UserDAO {
 
 	private Connection con;
@@ -57,6 +59,51 @@ public class UserDAO {
 			pstmt.setString(5, user.getUserEmail());
 			pstmt.setString(6, user.getUserBirth());
 			pstmt.setString(7, user.getUserPhone());
+			
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public User getUser(String userID) {
+		String SQL = "SELECT * FROM user WHERE userID = ?";
+		
+		try {
+			PreparedStatement pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				User user = new User();
+				user.setUserID(rs.getString(1));
+				user.setUserPassword(rs.getString(2));
+				user.setUserName(rs.getString(3));
+				user.setUserGender(rs.getString(4));
+				user.setUserEmail(rs.getString(5));
+				user.setUserBirth(rs.getString(6));
+				user.setUserPhone(rs.getString(7));
+				return user;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public int update(String userID, String userPassword, String userName, String userGender, String userEmail, String userBirth, String userPhone) {
+		String SQL = "UPDATE user SET userPassword = ?, userName = ?, userGender = ?, userEmail = ?, userBirth = ?, userPhone = ? WHERE userID = ?";
+		
+		try {
+			PreparedStatement pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, userPassword);
+			pstmt.setString(2, userName);
+			pstmt.setString(3, userGender);
+			pstmt.setString(4, userEmail);
+			pstmt.setString(5, userBirth);
+			pstmt.setString(6, userPhone);
+			pstmt.setString(7, userID);
 			
 			return pstmt.executeUpdate();
 		} catch (Exception e) {

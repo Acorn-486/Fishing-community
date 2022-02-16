@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="user.User"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,11 +41,13 @@
 					<%
 					} else {
 					%>
+					<li class="nav-item" style="padding-top: 7px; padding-right: 3px; color: white">[ <%= userID %>님 ]</li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">회원관리</a>
 						<ul class="dropdown-menu dropdown-menu-dark"
 							aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="updateMember.jsp">회원수정</a></li>
 							<li><a class="dropdown-item" href="logoutAction.jsp">로그아웃</a></li>
 						</ul></li>
 					<%

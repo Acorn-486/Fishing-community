@@ -14,7 +14,7 @@
 	<div class="container">
 		<div class="jumbotron" style="padding-top: 100px;">
 			<form method="post" action="joinAction.jsp" autocomplete="off">
-				<h1 style="text-align: center;">Fishing</h1>
+				<h1 style="text-align: center;">회원가입</h1>
 				<table style="width: 60%; margin: auto;">
 					<tr>
 						<td>아이디</td>
