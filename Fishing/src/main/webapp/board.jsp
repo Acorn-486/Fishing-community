@@ -35,6 +35,7 @@
 						<th style="background-color: #eeeeee; text-align: center;">제목</th>
 						<th style="background-color: #eeeeee; text-align: center;">작성자</th>
 						<th style="background-color: #eeeeee; text-align: center;">작성일</th>
+						<th style="background-color: #eeeeee; text-align: center;">조회수</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -48,6 +49,7 @@
 							<td onClick="location.href='view.jsp?boardID=<%=list.get(i).getBoardID() %>'" style="cursor:pointer;"><%= list.get(i).getBoardTitle().replaceAll(" ", "&nbps;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></td>
 							<td><%= list.get(i).getUserID() %></td>
 							<td><%= list.get(i).getBoardDate().substring(0, 11) + list.get(i).getBoardDate().substring(11, 13) + "시 " + list.get(i).getBoardDate().substring(14, 16) + "분" %></td>
+							<td><%= list.get(i).getBoardCnt() %></td>
 						</tr>
 					<%
 						}

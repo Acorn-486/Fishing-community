@@ -56,7 +56,7 @@ public class BoardDAO {
 	}
 	
 	public int write(String boardTitle, String userID, String boardContent) {
-		String SQL = "INSERT INTO BOARD VALUES (?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO BOARD VALUES (?, ?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement pstmt = con.prepareStatement(SQL);
@@ -65,6 +65,7 @@ public class BoardDAO {
 			pstmt.setString(3, userID);
 			pstmt.setString(4, getDate());
 			pstmt.setString(5, boardContent);
+			pstmt.setInt(6, 0);
 			
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -88,6 +89,7 @@ public class BoardDAO {
 				board.setUserID(rs.getString(3));
 				board.setBoardDate(rs.getString(4));
 				board.setBoardContent(rs.getString(5));
+				board.setBoardCnt(rs.getInt(6));
 				list.add(board);
 			}
 		} catch (Exception e) {
@@ -128,6 +130,7 @@ public class BoardDAO {
 				board.setUserID(rs.getString(3));
 				board.setBoardDate(rs.getString(4));
 				board.setBoardContent(rs.getString(5));
+				board.setBoardCnt(rs.getInt(6));
 				return board;
 			}
 		} catch (Exception e) {
@@ -137,7 +140,7 @@ public class BoardDAO {
 	}
 	
 	public int update(int boardID, String boardTitle, String boardContent) {
-		String SQL = "UPDATE BOARD SET boardTitle = ?, boardContent = ? WHERE boardID = ?";
+		String SQL = "UPDATE board SET boardTitle = ?, boardContent = ? WHERE boardID = ?";
 		
 		try {
 			PreparedStatement pstmt = con.prepareStatement(SQL);
@@ -164,6 +167,19 @@ public class BoardDAO {
 			e.printStackTrace();
 		}
 		return -1;
+	}
+	
+	public void updateBoardCnt(int boardID) {
+		String SQL = "UPDATE board SET boardCnt = boardCnt + 1 WHERE boardID = ?";
+		
+		try {
+			PreparedStatement pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, boardID);
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

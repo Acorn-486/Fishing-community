@@ -32,6 +32,7 @@
 		script.println("</script>");
 	}
 	Board board = new BoardDAO().getBoard(boardID);
+	BoardDAO boardDAO = new BoardDAO();
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 
@@ -55,6 +56,10 @@
 					<tr>
 						<td>작성일</td>
 						<td colspan="2"><%= board.getBoardDate().substring(0, 11) + board.getBoardDate().substring(11, 13) + "시 " + board.getBoardDate().substring(14, 16) + "분" %></td>
+					</tr>
+					<tr>
+						<td>조회수</td>
+						<td colspan="2"><%= board.getBoardCnt() + 1 %><% boardDAO.updateBoardCnt(boardID); %></td>
 					</tr>
 					<tr>
 						<td>내용</td>
@@ -135,8 +140,7 @@
 					</table>
 			</form>
 			</div>
-		</div>
-
+		</div>		
 	<script src="resource/js/bootstrap.js"></script>
 </body>
 </html>

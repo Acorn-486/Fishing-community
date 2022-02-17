@@ -7,6 +7,7 @@ public class Board {
 	private String userID;
 	private String boardDate;
 	private String boardContent;
+	private int boardCnt;
 	
 	public int getBoardID() {
 		return boardID;
@@ -37,5 +38,11 @@ public class Board {
 	}
 	public void setBoardContent(String boardContent) {
 		this.boardContent = boardContent;
+	}
+	public int getBoardCnt() {
+		return boardCnt;
+	}
+	public void setBoardCnt(int boardCnt) {
+		this.boardCnt = boardCnt;
 	}
 }

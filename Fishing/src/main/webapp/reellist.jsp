@@ -14,6 +14,11 @@
 </head>
 <body>
 	<%
+	String userID = null;
+	if (session.getAttribute("userID") != null) {
+		userID = (String) session.getAttribute("userID");
+	}
+	
 	int pageNumber = 1;
 	if (request.getParameter("pageNumber") != null) {
 		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
@@ -60,9 +65,12 @@
 						%>
 							<a href="rodlist.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn-success btn-arraw-left">다음</a>
 						<%
-							}
+							} if (userID != null && userID.equals("admin")) {
 						%>
 						<a href="addProduct.jsp" class="btn btn-secondary">상품 등록</a>
+						<%
+							}
+						%>
 					</td>
 				</tr>
 			</table>

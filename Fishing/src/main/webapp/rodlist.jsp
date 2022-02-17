@@ -23,8 +23,6 @@
 	if (request.getParameter("pageNumber") != null) {
 		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 	}
-	
-	Product product = new Product();
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 	
