@@ -56,7 +56,7 @@
 					</tr>
 					<tr>
 						<td>상품 사진</td>
-						<td colspan="2"><%= product.getProductImage() %></td>
+						<td colspan="2"><img src="/resource/images/<%= product.getProductImage() %>"></td>
 					</tr>
 					<tr>
 						<td>상세 설명</td>
