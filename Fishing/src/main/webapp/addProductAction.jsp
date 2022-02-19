@@ -2,16 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="product.ProductDAO"%>
 <%@ page import="java.io.PrintWriter"%>
+<%@ page import="java.util.Enumeration" %>
+<%@ page import="java.sql.Timestamp,com.oreilly.servlet.MultipartRequest"%> 
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%> 
 <%
 request.setCharacterEncoding("UTF-8");
 %>
 <jsp:useBean id="product" class="product.Product" scope="page" />
-<jsp:setProperty name="product" property="productName" />
-<jsp:setProperty name="product" property="productPrice" />
-<jsp:setProperty name="product" property="productDetail" />
-<jsp:setProperty name="product" property="productCategory" />
-<jsp:setProperty name="product" property="productStock" />
-<jsp:setProperty name="product" property="productImage" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +16,27 @@ request.setCharacterEncoding("UTF-8");
 <title>Fishing</title>
 </head>
 <body>
+	<%
+		String savePath = request.getServletContext().getRealPath("/resource/images");
+		int maxSize = 1024 * 1024 * 5;
+		
+		MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
+			
+	
+		String productName = multi.getParameter("productName");
+		String productPrice = multi.getParameter("productPrice");
+		String productDetail = multi.getParameter("productDetail");
+		String productCategory = multi.getParameter("productCategory");
+		String productStock = multi.getParameter("productStock");
+		String productImage = multi.getFilesystemName("productImage");
+		
+		product.setProductName(productName);
+		product.setProductPrice(productPrice);
+		product.setProductDetail(productDetail);
+		product.setProductCategory(productCategory);
+		product.setProductStock(productStock);
+		product.setProductImage(productImage);
+	%>
 	<%
 	String userID = null;
 	if (session.getAttribute("userID") != null) {
@@ -71,7 +89,7 @@ request.setCharacterEncoding("UTF-8");
 		} else {
 			ProductDAO productDAO = new ProductDAO();
 			int result = productDAO.add(product.getProductName(), product.getProductPrice(), product.getProductDetail(), product.getProductCategory(), product.getProductStock(), product.getProductImage(), userID);
-
+			
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");

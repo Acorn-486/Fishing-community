@@ -53,7 +53,7 @@
 	</div>
 	
 	<div class="container">
-		<form method="post" action="productUpdateAction.jsp?productID=<%= productID %>">
+		<form method="post" action="productUpdateAction.jsp?productID=<%= productID %>" enctype="multipart/form-data" autocomplete="off">
 			<div class="form-group row">
 				<label class="col-sm-2">상품명</label>
 				<div class="col-sm-5">
