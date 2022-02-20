@@ -10,6 +10,19 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link rel="stylesheet" href="resource/css/bootstrap.css">
 <title>Fishing</title>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+window.onload = function(){
+    document.getElementById("address").addEventListener("click", function(){
+        new daum.Postcode({
+            oncomplete: function(data) {
+                document.getElementById("address").value = data.address;
+                document.querySelector("input[name=userDetail]").focus();
+            }
+        }).open();
+    });
+}
+</script>
 </head>
 <body>
 	<%
@@ -87,6 +100,14 @@
 						<td>휴대폰</td>
 						<td><input type="text" class="form-control"
 							placeholder="ex) 010-1234-5678" name="userPhone" maxlength="20" value="<%= user.getUserPhone() %>"></td>
+					</tr>
+					<tr>
+						<td>주소</td>
+						<td><input type="text" class="form-control" id="address" name="userAddress" value="<%= user.getUserAddress() %>" readonly></td>
+					</tr>
+					<tr>
+						<td>상세주소</td>
+						<td><input type="text" class="form-control" name="userDetail" value="<%= user.getUserDetail() %>"></td>
 					</tr>
 				</table>
 				<br> <input type="submit" class="btn btn-primary form-control"

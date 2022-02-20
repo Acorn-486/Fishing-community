@@ -9,6 +9,8 @@ public class User {
 	private String userEmail;
 	private String userBirth;
 	private String userPhone;
+	private String userDetail;
+	private String userAddress;
 	
 	public String getUserPhone() {
 		return userPhone;
@@ -65,4 +67,21 @@ public class User {
 	public void setUserBirth(String userBirth) {
 		this.userBirth = userBirth;
 	}
+
+	public String getUserDetail() {
+		return userDetail;
+	}
+
+	public void setUserDetail(String userDetail) {
+		this.userDetail = userDetail;
+	}
+
+	public String getUserAddress() {
+		return userAddress;
+	}
+
+	public void setUserAddress(String userAddress) {
+		this.userAddress = userAddress;
+	}
+	
 }

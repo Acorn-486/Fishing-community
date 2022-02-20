@@ -13,6 +13,8 @@ request.setCharacterEncoding("UTF-8");
 <jsp:setProperty name="user" property="userGender" />
 <jsp:setProperty name="user" property="userEmail" />
 <jsp:setProperty name="user" property="userPhone" />
+<jsp:setProperty name="user" property="userAddress" />
+<jsp:setProperty name="user" property="userDetail" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,6 +75,18 @@ request.setCharacterEncoding("UTF-8");
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('핸드폰번호를 입력하지 않았습니다.')");
+		script.println("history.back()");
+		script.println("</script>");
+	} else if (user.getUserAddress() == null) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('주소를 입력하지 않았습니다.')");
+		script.println("history.back()");
+		script.println("</script>");
+	} else if (user.getUserDetail() == null) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('상세주소를 입력하지 않았습니다.')");
 		script.println("history.back()");
 		script.println("</script>");
 	} else {
