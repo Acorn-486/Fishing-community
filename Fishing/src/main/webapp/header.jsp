@@ -47,7 +47,8 @@
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">회원관리</a>
 						<ul class="dropdown-menu dropdown-menu-dark"
 							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="updateMember.jsp">회원수정</a></li>
+							<li><a class="dropdown-item" href="userUpdate.jsp">회원수정</a></li>
+							<li><a onclick="return confirm('정말 탈퇴하시겠습니까?')" class="dropdown-item" href="userDeleteAction.jsp">회원탈퇴</a></li>
 							<li><a class="dropdown-item" href="logoutAction.jsp">로그아웃</a></li>
 						</ul></li>
 					<%

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="board.Board"%>
-<%@ page import="board.BoardDAO"%>
+<%@ page import="user.User"%>
+<%@ page import="user.UserDAO"%>
 <%@ page import="java.io.PrintWriter"%>
 <%
 request.setCharacterEncoding("UTF-8");
@@ -26,30 +26,29 @@ request.setCharacterEncoding("UTF-8");
 		script.println("location.href = 'login.jsp'");
 		script.println("</script>");
 	}
-	int boardID = 0;
-	if (request.getParameter("boardID") != null) {
-		boardID = Integer.parseInt(request.getParameter("boardID"));
-	}
-	if (boardID == 0) {
+	
+	User user = new UserDAO().getUser(userID);
+	if (!userID.equals(user.getUserID())) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('존재하지 않는 글입니다.')");
-		script.println("location.href = 'board.jsp'");
+		script.println("alert('권한이 없습니다.')");
+		script.println("location.href = 'main.jsp'");
 		script.println("</script>");
 	} else {
-		BoardDAO boardDAO = new BoardDAO();
-		int result = boardDAO.delete(boardID);
+		UserDAO userDAO = new UserDAO();
+		int result = userDAO.delete(userID);
+		session.invalidate();
 
 		if (result == -1) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('삭제하기에 실패했습니다.')");
+			script.println("alert('탈퇴하기 실패했습니다.')");
 			script.println("history.back()");
 			script.println("</script>");
 		} else {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("location.href = 'board.jsp'");
+			script.println("location.href = 'main.jsp'");
 			script.println("</script>");
 		}
 	}

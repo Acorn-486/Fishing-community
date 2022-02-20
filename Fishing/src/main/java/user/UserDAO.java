@@ -118,4 +118,17 @@ public class UserDAO {
 		return -1;
 	}
 	
+	public int delete(String userID) {
+		String SQL = "DELETE FROM user WHERE userID = ?";
+		
+		try {
+			PreparedStatement pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 }

@@ -36,13 +36,6 @@
 		script.println("</script>");
 	}
 	Board board = new BoardDAO().getBoard(boardID);
-	if (!userID.equals(board.getUserID())) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('권한이 없습니다.')");
-		script.println("location.href = 'board.jsp'");
-		script.println("</script>");
-	}
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 

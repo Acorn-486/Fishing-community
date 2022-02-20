@@ -36,15 +36,6 @@ request.setCharacterEncoding("UTF-8");
 		script.println("alert('존재하지 않는 글입니다.')");
 		script.println("location.href = 'board.jsp'");
 		script.println("</script>");
-	}
-	
-	Board board = new BoardDAO().getBoard(boardID);
-	if (!userID.equals(board.getUserID())) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('권한이 없습니다.')");
-		script.println("location.href = 'board.jsp'");
-		script.println("</script>");
 	} else {
 		if (request.getParameter("boardTitle") == null || request.getParameter("boardTitle").equals("")) {
 			PrintWriter script = response.getWriter();

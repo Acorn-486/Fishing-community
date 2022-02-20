@@ -50,7 +50,7 @@ window.onload = function(){
 
 	<div class="container">
 		<div class="jumbotron" style="padding-top: 100px;">
-			<form method="post" action="updateMemberAction.jsp" autocomplete="off">
+			<form method="post" action="userUpdateAction.jsp" autocomplete="off">
 				<h1 style="text-align: center;">회원수정</h1>
 				<table style="width: 60%; margin: auto;">
 					<tr>
@@ -111,7 +111,7 @@ window.onload = function(){
 					</tr>
 				</table>
 				<br> <input type="submit" class="btn btn-primary form-control"
-					value="회원가입">
+					value="수정하기">
 			</form>
 		</div>
 	</div>

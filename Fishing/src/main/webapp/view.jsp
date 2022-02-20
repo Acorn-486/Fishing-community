@@ -70,11 +70,13 @@
 					<td colspan="6">
 						<a href="board.jsp" class="btn btn-secondary">목록</a>
 						<%
-							if (userID != null && userID.equals(board.getUserID())) {
+							if (userID != null) {
+								if (userID.equals(board.getUserID()) || userID.equals("admin")) {
 						%>
 						<a href="update.jsp?boardID=<%= boardID %>" class="btn btn-warning">수정</a>
 						<a onclick="return confirm('정말 삭제하시겠습니까?')" href="deleteAction.jsp?boardID=<%= boardID %>" class="btn btn-danger">삭제</a>
 						<%
+								}
 							}
 						%>
 					</td>
