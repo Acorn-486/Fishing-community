@@ -19,6 +19,7 @@
 	if (request.getParameter("productID") != null) {
 		productID = Integer.parseInt(request.getParameter("productID"));
 	}
+	
 	if (productID == 0) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
@@ -28,13 +29,28 @@
 	}
 	
 	Product product = new ProductDAO().getProduct(productID);
-	ArrayList<Integer> cartList = new ArrayList<Integer>();
+	ArrayList<Product> goodsList = new ArrayList<>();
 	
-	cartList.add(productID);
+	goodsList.add(product);
 	
-	session.setAttribute("cartList", cartList);
+	Product goods = new Product();
+	for (int i = 0; i < goodsList.size(); i++) {
+		goods = goodsList.get(i);
+		if (goods.getProductID() == productID) {
+			break;
+		}
+	}
+	
+	ArrayList<Product> list = (ArrayList<Product>) session.getAttribute("cartList");
+	
+	if (list == null) {
+		list = new ArrayList<Product>();
+		session.setAttribute("cartList", list);
+	}
+	
+	list.add(goods);
 	%>
-	
+
 	<script type="text/javascript">
 		alert("<%= product.getProductName() %>가 추가 되었습니다.");
 		history.go(-1);
