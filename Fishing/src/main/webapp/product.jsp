@@ -81,6 +81,7 @@
 						<%
 							}
 						%>
+						<a href="addCart.jsp?productID=<%= productID %>" class="btn btn-primary">장바구니 담기</a>
 					</td>
 				</tr>
 			</table>
