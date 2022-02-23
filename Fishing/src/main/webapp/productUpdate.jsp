@@ -95,13 +95,6 @@
 			</div>
 			
 			<div class="form-group row">
-				<label class="col-sm-2">재고 수량</label>
-				<div class="col-sm-5">
-					<input type="text" class="form-control" placeholder="재고수량" name="productStock" maxlength="30" value="<%= product.getProductStock() %>">
-				</div>
-			</div>
-			
-			<div class="form-group row">
 				<label class="col-sm-2">상품 사진</label>
 				<div class="col-sm-5">
 					<input type="file" class="form-control" name="productImage" value="<%= product.getProductImage() %>">

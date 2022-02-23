@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.util.ArrayList"%>
+<%@ page import="java.text.DecimalFormat"%>
 <%@ page import="product.Product"%>
 <%@ page import="product.ProductDAO"%>
 <!DOCTYPE html>
@@ -23,6 +24,8 @@
 	if (request.getParameter("pageNumber") != null) {
 		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 	}
+	
+	DecimalFormat dFormat = new DecimalFormat("###,###");
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 	
@@ -37,7 +40,6 @@
 					<tr>
 						<th style="background-color: #eeeeee; text-align: center;">상품명</th>
 						<th style="background-color: #eeeeee; text-align: center;">가격</th>
-						<th style="background-color: #eeeeee; text-align: center;">재고수</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -48,8 +50,7 @@
 					%>
 						<tr>
 							<td onClick="location.href='product.jsp?productID=<%=list.get(i).getProductID() %>'" style="cursor:pointer;"><%= list.get(i).getProductName() %></td>
-							<td><%= list.get(i).getProductPrice() %></td>
-							<td><%= list.get(i).getProductStock() %></td>
+							<td><%= dFormat.format(list.get(i).getProductPrice()) %></td>
 					<%
 						}
 					%>

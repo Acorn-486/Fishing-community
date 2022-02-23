@@ -53,12 +53,11 @@ public class ProductDAO {
 				Product product = new Product();
 				product.setProductID(rs.getInt(1));
 				product.setProductName(rs.getString(2));
-				product.setProductPrice(rs.getString(3));
+				product.setProductPrice(rs.getInt(3));
 				product.setProductDetail(rs.getString(4));
 				product.setProductCategory(rs.getString(5));
-				product.setProductStock(rs.getString(6));
-				product.setProductImage(rs.getString(7));
-				product.setUserID(rs.getString(8));
+				product.setProductImage(rs.getString(6));
+				product.setUserID(rs.getString(7));
 				list.add(product);
 			}
 		} catch (Exception e) {
@@ -80,12 +79,11 @@ public class ProductDAO {
 				Product product = new Product();
 				product.setProductID(rs.getInt(1));
 				product.setProductName(rs.getString(2));
-				product.setProductPrice(rs.getString(3));
+				product.setProductPrice(rs.getInt(3));
 				product.setProductDetail(rs.getString(4));
 				product.setProductCategory(rs.getString(5));
-				product.setProductStock(rs.getString(6));
-				product.setProductImage(rs.getString(7));
-				product.setUserID(rs.getString(8));
+				product.setProductImage(rs.getString(6));
+				product.setUserID(rs.getString(7));
 				list.add(product);
 			}
 		} catch (Exception e) {
@@ -111,19 +109,18 @@ public class ProductDAO {
 		return false;
 	}
 	
-	public int add(String productName, String productPrice, String productDetail, String productCategory, String productStock, String productImage, String userID) {
-		String SQL = "INSERT INTO product VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	public int add(String productName, Integer productPrice, String productDetail, String productCategory, String productImage, String userID) {
+		String SQL = "INSERT INTO product VALUES (?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, getNext());
 			pstmt.setString(2, productName);
-			pstmt.setString(3, productPrice);
+			pstmt.setInt(3, productPrice);
 			pstmt.setString(4, productDetail);
 			pstmt.setString(5, productCategory);
-			pstmt.setString(6, productStock);
-			pstmt.setString(7, productImage);
-			pstmt.setString(8, userID);
+			pstmt.setString(6, productImage);
+			pstmt.setString(7, userID);
 			
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -144,12 +141,11 @@ public class ProductDAO {
 				Product product = new Product();
 				product.setProductID(rs.getInt(1));
 				product.setProductName(rs.getString(2));
-				product.setProductPrice(rs.getString(3));
+				product.setProductPrice(rs.getInt(3));
 				product.setProductDetail(rs.getString(4));
 				product.setProductCategory(rs.getString(5));
-				product.setProductStock(rs.getString(6));
-				product.setProductImage(rs.getString(7));
-				product.setUserID(rs.getString(8));
+				product.setProductImage(rs.getString(6));
+				product.setUserID(rs.getString(7));
 				return product;
 			}
 		} catch (Exception e) {
@@ -158,17 +154,16 @@ public class ProductDAO {
 		return null;
 	}
 	
-	public int update(int productID, String productName, String productPrice, String productDetail, String productStock, String productImage) {
-		String SQL = "UPDATE product SET productName = ?, productPrice = ?, productDetail = ?, productStock = ?, productImage = ? WHERE productID = ?";
+	public int update(int productID, String productName, Integer productPrice, String productDetail, String productImage) {
+		String SQL = "UPDATE product SET productName = ?, productPrice = ?, productDetail = ?, productImage = ? WHERE productID = ?";
 		
 		try {
 			PreparedStatement pstmt = con.prepareStatement(SQL);
 			pstmt.setString(1, productName);
-			pstmt.setString(2, productPrice);
+			pstmt.setInt(2, productPrice);
 			pstmt.setString(3, productDetail);
-			pstmt.setString(4, productStock);
-			pstmt.setString(5, productImage);
-			pstmt.setInt(6, productID);
+			pstmt.setString(4, productImage);
+			pstmt.setInt(5, productID);
 			
 			return pstmt.executeUpdate();
 		} catch (Exception e) {

@@ -24,17 +24,15 @@ request.setCharacterEncoding("UTF-8");
 			
 	
 		String productName = multi.getParameter("productName");
-		String productPrice = multi.getParameter("productPrice");
+		Integer productPrice = Integer.parseInt(multi.getParameter("productPrice"));
 		String productDetail = multi.getParameter("productDetail");
 		String productCategory = multi.getParameter("productCategory");
-		String productStock = multi.getParameter("productStock");
 		String productImage = multi.getFilesystemName("productImage");
 		
 		product.setProductName(productName);
 		product.setProductPrice(productPrice);
 		product.setProductDetail(productDetail);
 		product.setProductCategory(productCategory);
-		product.setProductStock(productStock);
 		product.setProductImage(productImage);
 	%>
 	<%
@@ -56,7 +54,7 @@ request.setCharacterEncoding("UTF-8");
 			script.println("alert('상품명을 입력하지 않았습니다.')");
 			script.println("history.back()");
 			script.println("</script>");
-		} else if (product.getProductPrice() == null) {
+		} else if (product.getProductPrice() == 0) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('상품 가격을 입력하지 않았습니다.')");
@@ -74,12 +72,6 @@ request.setCharacterEncoding("UTF-8");
 			script.println("alert('카테고리를 입력하지 않았습니다.')");
 			script.println("history.back()");
 			script.println("</script>");
-		} else if (product.getProductStock() == null) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('재고 수량이 없습니다.')");
-			script.println("history.back()");
-			script.println("</script>");
 		} else if (product.getProductImage() == null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
@@ -88,7 +80,7 @@ request.setCharacterEncoding("UTF-8");
 			script.println("</script>");
 		} else {
 			ProductDAO productDAO = new ProductDAO();
-			int result = productDAO.add(product.getProductName(), product.getProductPrice(), product.getProductDetail(), product.getProductCategory(), product.getProductStock(), product.getProductImage(), userID);
+			int result = productDAO.add(product.getProductName(), product.getProductPrice(), product.getProductDetail(), product.getProductCategory(), product.getProductImage(), userID);
 			
 			if (result == -1) {
 				PrintWriter script = response.getWriter();

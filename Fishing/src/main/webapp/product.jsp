@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.util.ArrayList"%>
+<%@ page import="java.text.DecimalFormat"%>
 <%@ page import="product.Product"%>
 <%@ page import="product.ProductDAO"%>
 <!DOCTYPE html>
@@ -30,6 +31,7 @@
 		script.println("</script>");
 	}
 	Product product = new ProductDAO().getProduct(productID);
+	DecimalFormat dFormat = new DecimalFormat("###,###");
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 
@@ -48,11 +50,7 @@
 					</tr>
 					<tr>
 						<td>가격</td>
-						<td colspan="2"><%= product.getProductPrice() %></td>
-					</tr>
-					<tr>
-						<td>재고수</td>
-						<td colspan="2"><%= product.getProductStock() %></td>
+						<td colspan="2"><%= dFormat.format(product.getProductPrice()) %></td>
 					</tr>
 					<tr>
 						<td>상품 사진</td>

@@ -41,11 +41,11 @@
 	
 	for (int i = 0; i < cartList.size(); i++) {
 		Product product = cartList.get(i);
-		// total += product.getProductPrice();
+		total += product.getProductPrice();
 	%>
 				<tr>
 					<td><%= product.getProductName() %></td>
-					<td><%= product.getProductPrice() %></td>
+					<td><%= dFormat.format(product.getProductPrice()) %></td>
 					<td><a href="removeCart.jsp?id=<%= product.getProductID() %>" class="btn btn-danger">삭제</a></td>
 				</tr>
 	<%

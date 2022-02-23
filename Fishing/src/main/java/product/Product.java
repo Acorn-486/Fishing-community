@@ -4,10 +4,9 @@ public class Product {
 	
 	private int productID;
 	private String productName;
-	private String productPrice;
+	private int productPrice;
 	private String productDetail;
 	private String productCategory;
-	private String productStock;
 	private String productImage;
 	private String userID;
 	
@@ -25,10 +24,10 @@ public class Product {
 		this.productName = productName;
 	}
 	
-	public String getProductPrice() {
+	public int getProductPrice() {
 		return productPrice;
 	}
-	public void setProductPrice(String productPrice) {
+	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
 	
@@ -44,13 +43,6 @@ public class Product {
 	}
 	public void setProductCategory(String productCategory) {
 		this.productCategory = productCategory;
-	}
-	
-	public String getProductStock() {
-		return productStock;
-	}
-	public void setProductStock(String productStock) {
-		this.productStock = productStock;
 	}
 	
 	public String getProductImage() {
