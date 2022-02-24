@@ -45,8 +45,8 @@
 	%>
 				<tr>
 					<td><%= product.getProductName() %></td>
-					<td><%= dFormat.format(product.getProductPrice()) %></td>
-					<td><a href="removeCart.jsp?id=<%= product.getProductID() %>" class="btn btn-danger">삭제</a></td>
+					<td><%= dFormat.format(product.getProductPrice()) %>원</td>
+					<td><a href="removeCart.jsp?productID=<%= product.getProductID() %>" class="btn btn-danger">삭제</a></td>
 				</tr>
 	<%
 	}
@@ -55,7 +55,7 @@
 					<th></th>
 					<th></th>
 					<th>총액</th>
-					<th><%= dFormat.format(total) %></th>
+					<th><%= dFormat.format(total) %>원</th>
 					<th></th>
 				</tr>
 			</table>

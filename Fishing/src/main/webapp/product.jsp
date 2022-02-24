@@ -50,7 +50,7 @@
 					</tr>
 					<tr>
 						<td>가격</td>
-						<td colspan="2"><%= dFormat.format(product.getProductPrice()) %></td>
+						<td colspan="2"><%= dFormat.format(product.getProductPrice()) %>원</td>
 					</tr>
 					<tr>
 						<td>상품 사진</td>
@@ -77,9 +77,12 @@
 						<a href="productUpdate.jsp?productID=<%= productID %>" class="btn btn-warning">수정</a>
 						<a onclick="return confirm('정말 삭제하시겠습니까?')" href="productDeleteAction.jsp?productID=<%= productID %>" class="btn btn-danger">삭제</a>
 						<%
-							}
+							} if (userID != null) {
 						%>
 						<a href="addCart.jsp?productID=<%= productID %>" class="btn btn-primary">장바구니 담기</a>
+						<%
+							}
+						%>
 					</td>
 				</tr>
 			</table>

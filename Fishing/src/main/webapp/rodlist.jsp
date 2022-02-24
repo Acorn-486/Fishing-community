@@ -50,7 +50,7 @@
 					%>
 						<tr>
 							<td onClick="location.href='product.jsp?productID=<%=list.get(i).getProductID() %>'" style="cursor:pointer;"><%= list.get(i).getProductName() %></td>
-							<td><%= dFormat.format(list.get(i).getProductPrice()) %></td>
+							<td><%= dFormat.format(list.get(i).getProductPrice()) %>원</td>
 					<%
 						}
 					%>
