@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.text.DecimalFormat"%>
+<%@ page import="java.io.PrintWriter"%>
+<%@ page import="user.User"%>
+<%@ page import="user.UserDAO"%>
 <%@ page import="product.Product"%>
 <%@ page import="product.ProductDAO"%>
 <% request.setCharacterEncoding("UTF-8"); %>
@@ -16,6 +19,19 @@
 <body>
 	<%
 	DecimalFormat dFormat = new DecimalFormat("###,###");
+	
+	String userID = null;
+	if (session.getAttribute("userID") != null) {
+		userID = (String) session.getAttribute("userID");
+	}
+	if (userID == null) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('로그인을 해주세요.')");
+		script.println("location.href = 'login.jsp'");
+		script.println("</script>");
+	}
+	User user = new UserDAO().getUser(userID);
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 	
@@ -53,15 +69,17 @@
 	%>
 				<tr>
 					<th></th>
-					<th></th>
 					<th>총액</th>
 					<th><%= dFormat.format(total) %>원</th>
-					<th></th>
+				</tr>
+				<tr>
+				<td></td>
+				<td></td>
+				<td><a href="#" class="btn btn-secondary">결제하기</a></td>
 				</tr>
 			</table>
 		</div>
 	</div>
-	
 	<script src="resource/js/bootstrap.js"></script>
 </body>
 </html>
