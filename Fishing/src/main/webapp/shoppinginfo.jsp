@@ -42,57 +42,43 @@ window.onload = function(){
 	User user = new UserDAO().getUser(userID);
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
-	<div class="container">
-		<br>
-		<h1>배송정보</h1>
-	</div>
 
 	<div class="container">
 		<form method="post" action="./processShippingInfo.jsp" autocomplete="off">
+		<h1 style="text-align: left;">배송정보</h1>
+			<table style="width: 40%;">
+				<tr>
+					<td><input type="hidden" name="cartId" value="<%=request.getParameter("cartId")%>" /></td>
+				</tr>
+				
+				<tr>
+					<td>성명</td>
+					<td><input name="name" type="text" class="form-control" placeholder="성명" value="<%=user.getUserName()%>" /></td>
+				</tr>
 
-			<input type="hidden" name="cartId" value="<%=request.getParameter("cartId")%>" />
-			<div class="form-group row">
-				<label class="col-sm-2">성명</label>
-				<div class="col-sm-3">
-					<input name="name" type="text" class="form-control" placeholder="성명" value="<%= user.getUserName() %>"/>
-				</div>
-			</div>
+				<tr>
+					<td>이메일</td>
+					<td><input name="email" type="email" class="form-control" placeholder="이메일" value="<%= user.getUserEmail() %>" /></td>
+				</tr>
 
-			<div class="form-group row">
-				<label class="col-sm-2">이메일</label>
-				<div class="col-sm-3">
-					<input name="email" type="email" class="form-control" placeholder="이메일" value="<%= user.getUserEmail() %>"/>
-				</div>
-			</div>
+				<tr>
+					<td>우편번호</td>
+					<td><input name="zipCode" type="text" class="form-control" id="zipCode" placeholder="우편번호" value="<%= user.getUserZipCode() %>" readonly /></td>
+				</tr>
 
-			<div class="form-group row">
-				<label class="col-sm-2">우편번호</label>
-				<div class="col-sm-3">
-					<input name="zipCode" type="text" class="form-control" id="zipCode" placeholder="우편번호" value="<%= user.getUserZipCode() %>" readonly/>
-				</div>
-			</div>
+				<tr>
+					<td>주소</td>
+					<td><input name="address" type="text" class="form-control" id="address" placeholder="주소" value="<%= user.getUserAddress() %>" readonly /></td>
+				</tr>
 
-			<div class="form-group row">
-				<label class="col-sm-2">주소</label>
-				<div class="col-sm-5">
-					<input name="address" type="text" class="form-control" id="address" placeholder="주소" value="<%= user.getUserAddress() %>" readonly/>
-				</div>
-			</div>
-			
-			<div class="form-group row">
-				<label class="col-sm-2">상세주소</label>
-				<div class="col-sm-5">
-					<input name="detail" type="text" class="form-control" placeholder="상세주소" value="<%= user.getUserDetail() %>"/>
-				</div>
-			</div>
-
-			<div class="form-group row">
-				<div class="col-sm-offset-2 col-sm-10">
-					<a href="./cart.jsp?carId=<%=request.getParameter("cartId")%>"class="btn btn-secondary" role="button">이전</a>
-					<input type="submit" class="btn btn-primary" value="등록" />
-					<a href="./checkOutCancelled.jsp" class="btn btn-secondary" role="button">취소</a>
-				</div>
-			</div>
+				<tr>
+					<td>상세주소</td>
+					<td><input name="detail" type="text" class="form-control" placeholder="상세주소" value="<%= user.getUserDetail() %>" /></td>
+				</tr>
+			</table>
+			<br>
+			<a href="./cart.jsp?carId=<%=request.getParameter("cartId")%>" class="btn btn-secondary" role="button">이전</a>
+			<input type="submit" class="btn btn-primary" value="등록" />
 		</form>
 	</div>
 
