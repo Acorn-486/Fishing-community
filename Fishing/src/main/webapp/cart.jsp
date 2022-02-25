@@ -18,6 +18,7 @@
 </head>
 <body>
 	<%
+	String cartId = session.getId();
 	DecimalFormat dFormat = new DecimalFormat("###,###");
 	
 	String userID = null;
@@ -75,7 +76,7 @@
 				<tr>
 				<td></td>
 				<td></td>
-				<td><a href="#" class="btn btn-secondary">결제하기</a></td>
+				<td><a href="shoppinginfo.jsp?cartId=<%= cartId %>" class="btn btn-secondary">주문하기</a></td>
 				</tr>
 			</table>
 		</div>

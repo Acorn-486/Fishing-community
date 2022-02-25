@@ -49,7 +49,7 @@ public class UserDAO {
 	}
 	
 	public int join(User user) {
-		String SQL = "INSERT INTO USER VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO USER VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setString(1, user.getUserID());
@@ -59,8 +59,9 @@ public class UserDAO {
 			pstmt.setString(5, user.getUserEmail());
 			pstmt.setString(6, user.getUserBirth());
 			pstmt.setString(7, user.getUserPhone());
-			pstmt.setString(8, user.getUserDetail());
-			pstmt.setString(9, user.getUserAddress());
+			pstmt.setString(8, user.getUserZipCode());
+			pstmt.setString(9, user.getUserDetail());
+			pstmt.setString(10, user.getUserAddress());
 			
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -86,8 +87,9 @@ public class UserDAO {
 				user.setUserEmail(rs.getString(5));
 				user.setUserBirth(rs.getString(6));
 				user.setUserPhone(rs.getString(7));
-				user.setUserDetail(rs.getString(8));
-				user.setUserAddress(rs.getString(9));
+				user.setUserZipCode(rs.getString(8));
+				user.setUserDetail(rs.getString(9));
+				user.setUserAddress(rs.getString(10));
 				return user;
 			}
 		} catch (Exception e) {
@@ -96,8 +98,8 @@ public class UserDAO {
 		return null;
 	}
 	
-	public int update(String userID, String userPassword, String userName, String userGender, String userEmail, String userBirth, String userPhone, String userDetail, String userAddress) {
-		String SQL = "UPDATE user SET userPassword = ?, userName = ?, userGender = ?, userEmail = ?, userBirth = ?, userPhone = ?, userDetail = ?, userAddress = ? WHERE userID = ?";
+	public int update(String userID, String userPassword, String userName, String userGender, String userEmail, String userBirth, String userPhone, String userZipCode, String userDetail, String userAddress) {
+		String SQL = "UPDATE user SET userPassword = ?, userName = ?, userGender = ?, userEmail = ?, userBirth = ?, userPhone = ?, userZipCode = ?, userDetail = ?, userAddress = ? WHERE userID = ?";
 		
 		try {
 			PreparedStatement pstmt = con.prepareStatement(SQL);
@@ -107,9 +109,10 @@ public class UserDAO {
 			pstmt.setString(4, userEmail);
 			pstmt.setString(5, userBirth);
 			pstmt.setString(6, userPhone);
-			pstmt.setString(7, userDetail);
-			pstmt.setString(8, userAddress);
-			pstmt.setString(9, userID);
+			pstmt.setString(7, userZipCode);
+			pstmt.setString(8, userDetail);
+			pstmt.setString(9, userAddress);
+			pstmt.setString(10, userID);
 			
 			return pstmt.executeUpdate();
 		} catch (Exception e) {

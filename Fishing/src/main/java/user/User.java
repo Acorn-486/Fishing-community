@@ -9,6 +9,7 @@ public class User {
 	private String userEmail;
 	private String userBirth;
 	private String userPhone;
+	private String userZipCode;
 	private String userDetail;
 	private String userAddress;
 	
@@ -62,6 +63,14 @@ public class User {
 	
 	public String getUserBirth() {
 		return userBirth;
+	}
+
+	public String getUserZipCode() {
+		return userZipCode;
+	}
+
+	public void setUserZipCode(String userZipCode) {
+		this.userZipCode = userZipCode;
 	}
 
 	public void setUserBirth(String userBirth) {

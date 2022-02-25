@@ -71,6 +71,12 @@ request.setCharacterEncoding("UTF-8");
 			script.println("alert('연락처를 입력하지 않았습니다.')");
 			script.println("history.back()");
 			script.println("</script>");
+		} else if (request.getParameter("userZipCode") == null || request.getParameter("userZipCode").equals("")) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('우편번호를 입력하지 않았습니다.')");
+			script.println("history.back()");
+			script.println("</script>");
 		} else if (request.getParameter("userAddress") == null || request.getParameter("userAddress").equals("")) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
@@ -85,7 +91,7 @@ request.setCharacterEncoding("UTF-8");
 			script.println("</script>");
 		} else {
 			UserDAO userDAO = new UserDAO();
-			int result = userDAO.update(userID, request.getParameter("userPassword"), request.getParameter("userName"), request.getParameter("userGender"), request.getParameter("userEmail"), request.getParameter("userBirth"), request.getParameter("userPhone"), request.getParameter("userDetail"), request.getParameter("userAddress"));
+			int result = userDAO.update(userID, request.getParameter("userPassword"), request.getParameter("userName"), request.getParameter("userGender"), request.getParameter("userEmail"), request.getParameter("userBirth"), request.getParameter("userPhone"), request.getParameter("userZipCode"), request.getParameter("userDetail"), request.getParameter("userAddress"));
 
 			if (result == -1) {
 				PrintWriter script = response.getWriter();

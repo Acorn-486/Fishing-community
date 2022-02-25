@@ -17,6 +17,7 @@ window.onload = function(){
         new daum.Postcode({
             oncomplete: function(data) {
                 document.getElementById("address").value = data.address;
+                document.getElementById("zipCode").value = data.zonecode;
                 document.querySelector("input[name=userDetail]").focus();
             }
         }).open();
@@ -100,6 +101,10 @@ window.onload = function(){
 						<td>휴대폰</td>
 						<td><input type="text" class="form-control"
 							placeholder="ex) 010-1234-5678" name="userPhone" maxlength="20" value="<%= user.getUserPhone() %>"></td>
+					</tr>
+					<tr>
+						<td>우편번호</td>
+						<td><input type="text" class="form-control" id="zipCode" name="userZipCode" value="<%= user.getUserZipCode() %>" readonly></td>
 					</tr>
 					<tr>
 						<td>주소</td>
