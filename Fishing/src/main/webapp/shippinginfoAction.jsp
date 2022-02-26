@@ -54,7 +54,7 @@
 	response.addCookie(address);
 	response.addCookie(detail);
 	
-	response.sendRedirect("orderConfirmation.jsp");
+	response.sendRedirect("orderConfirm.jsp");
 	%>
 	
 	<script src="resource/js/bootstrap.js"></script>
