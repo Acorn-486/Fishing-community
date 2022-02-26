@@ -44,7 +44,7 @@ window.onload = function(){
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<div class="container">
-		<form method="post" action="./processShippingInfo.jsp" autocomplete="off">
+		<form method="post" action="shoppingInfoAction.jsp" autocomplete="off">
 		<h1 style="text-align: left;">배송정보</h1>
 			<table style="width: 40%;">
 				<tr>
@@ -77,7 +77,7 @@ window.onload = function(){
 				</tr>
 			</table>
 			<br>
-			<a href="./cart.jsp?carId=<%=request.getParameter("cartId")%>" class="btn btn-secondary" role="button">이전</a>
+			<a href="cart.jsp?carId=<%=request.getParameter("cartId")%>" class="btn btn-secondary" role="button">이전</a>
 			<input type="submit" class="btn btn-primary" value="등록" />
 		</form>
 	</div>
