@@ -44,7 +44,7 @@ window.onload = function(){
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<div class="container">
-		<form method="post" action="shippingInfoAction.jsp" autocomplete="off">
+		<form method="post" action="shippinginfoAction.jsp" autocomplete="off">
 		<h1 style="text-align: left;">배송정보</h1>
 			<table style="width: 40%;">
 				<tr>

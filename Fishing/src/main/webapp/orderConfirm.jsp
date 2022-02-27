@@ -81,13 +81,11 @@
 		</div>
 	</div>
 	
-	<div class="row justify-content-between">
-		<div class="col-4" align="left">
-			<strong>배송 주소</strong><br> 
-			성명: <%out.println(shipping_name); %><br>
-			우편번호: <%out.println(shipping_zipCode); %><br>
-			주소: <%out.println(shipping_address); %>(<%out.println(shipping_detail); %>)<br>
-		</div>
+	<div class="container">
+		<strong>배송 주소</strong><br> 
+		성명: <%out.println(shipping_name); %><br>
+		우편번호: <%out.println(shipping_zipCode); %><br>
+		주소: <%out.println(shipping_address); %>(<%out.println(shipping_detail); %>)<br>
 	</div>
 	
 	<div class="container">
@@ -113,7 +111,7 @@
 				<tr>
 					<td><em><%= product.getProductName() %></em></td>
 					<td><%= dFormat.format(product.getProductPrice()) %>원</td>
-					<td><a href="removeCart.jsp?productID=<%= product.getProductID() %>" class="btn btn-danger">삭제</a></td>
+					<td></td>
 				</tr>
 	<%
 	}
@@ -123,17 +121,12 @@
 					<th>총액</th>
 					<th><%= dFormat.format(total) %>원</th>
 				</tr>
-				<tr>
-				<td></td>
-				<td></td>
-				<td><a href="shippinginfo.jsp?cartId=<%= cartId %>" class="btn btn-secondary">주문하기</a></td>
-				</tr>
 			</table>
 		</div>
 	</div>
 	
-	<a href="./shippingInfo.jsp?cartId=<%=shipping_cartId %>" class="btn btn-secondary" role="button">이전</a>
-	<a href="./thankCustomer.jsp" class="btn btn-primary" role="button">주문 완료</a>
+	<a href="shippinginfo.jsp?cartId=<%=shipping_cartId %>" class="btn btn-secondary" role="button">이전</a>
+	<a href="thankCustomer.jsp" class="btn btn-primary" role="button">주문 완료</a>
 	
 	<script src="resource/js/bootstrap.js"></script>
 </body>
