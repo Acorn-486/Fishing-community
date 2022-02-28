@@ -47,7 +47,7 @@
 				<tbody>
 					<tr>
 						<td style="width: 20%;">글 제목</td>
-						<td colspan="2"><%= board.getBoardTitle().replaceAll(" ", "&nbps;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></td>
+						<td colspan="2"><%= board.getBoardTitle() %></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
@@ -63,7 +63,7 @@
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td colspan="2" style="min-height: 200px; text-align: left;"><%= board.getBoardContent().replaceAll(" ", "&nbps;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></td>
+						<td colspan="2" style="min-height: 200px; text-align: left;"><%= board.getBoardContent() %></td>
 					</tr>
 				</tbody>
 				<tr>
@@ -107,7 +107,7 @@
 										<td align="right"><%= list.get(i).getCommentDate().substring(0,11) + list.get(i).getCommentDate().substring(11, 13) + "시 " + list.get(i).getCommentDate().substring(14, 16) + "분" %></td>
 										</tr>
 										<tr>
-										<td align="left"><%= list.get(i).getCommentContent().replaceAll(" ", "&nbps;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></td>
+										<td align="left"><%= list.get(i).getCommentContent() %></td>
 										<td align="right">
 											<%
 												if(list.get(i).getUserID() != null && list.get(i).getUserID().equals(userID)){
