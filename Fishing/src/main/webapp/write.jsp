@@ -10,6 +10,20 @@
 <title>Fishing</title>
 </head>
 <body>
+	<%
+	String userID = null;
+	if (session.getAttribute("userID") != null) {
+		userID = (String) session.getAttribute("userID");
+	}
+	
+	if (userID == null) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('로그인을 해주세요.')");
+		script.println("location.href = 'login.jsp'");
+		script.println("</script>");
+	}
+	%>
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<div class="container">

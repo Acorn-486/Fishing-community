@@ -98,6 +98,32 @@ public class BoardDAO {
 		return list;
 	}
 	
+	public ArrayList<Board> getSearch(String searchField, String searchText) {
+		String SQL = "SELECT * FROM BOARD WHERE " + searchField.trim();
+		ArrayList<Board> list = new ArrayList<Board>();
+		
+		try {
+			if (searchText != null && !searchText.equals("")) {
+				SQL += " LIKE '%'" + searchText.trim() + "'%' ORDER BY boardID DESC LIMIT 10";
+			}
+			PreparedStatement pstmt = con.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Board board = new Board();
+				board.setBoardID(rs.getInt(1));
+				board.setBoardTitle(rs.getString(2));
+				board.setUserID(rs.getString(3));
+				board.setBoardDate(rs.getString(4));
+				board.setBoardContent(rs.getString(5));
+				board.setBoardCnt(rs.getInt(6));
+				list.add(board);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	public boolean nextPage(int pageNumber) {
 		String SQL = "SELECT * FROM BOARD WHERE boardID < ?";
 		
