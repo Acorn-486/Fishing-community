@@ -104,7 +104,7 @@ public class BoardDAO {
 		
 		try {
 			if (searchText != null && !searchText.equals("")) {
-				SQL += " LIKE '%'" + searchText.trim() + "'%' ORDER BY boardID DESC LIMIT 10";
+				SQL += " LIKE '%" + searchText.trim() + "%' ORDER BY boardID DESC LIMIT 10";
 			}
 			PreparedStatement pstmt = con.prepareStatement(SQL);
 			rs = pstmt.executeQuery();

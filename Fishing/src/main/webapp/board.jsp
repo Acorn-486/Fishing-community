@@ -4,6 +4,9 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="board.BoardDAO"%>
 <%@ page import="board.Board"%>
+<%
+request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +49,7 @@
 					%>
 						<tr>
 							<td><%= list.get(i).getBoardID() %></td>
-							<td onClick="location.href='view.jsp?boardID=<%=list.get(i).getBoardID() %>'" style="cursor:pointer;"><%= list.get(i).getBoardTitle().replaceAll(" ", "&nbps;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></td>
+							<td onClick="location.href='view.jsp?boardID=<%=list.get(i).getBoardID() %>'" style="cursor:pointer;"><%= list.get(i).getBoardTitle() %></td>
 							<td><%= list.get(i).getUserID() %></td>
 							<td><%= list.get(i).getBoardDate().substring(0, 11) + list.get(i).getBoardDate().substring(11, 13) + "시 " + list.get(i).getBoardDate().substring(14, 16) + "분" %></td>
 							<td><%= list.get(i).getBoardCnt() %></td>
@@ -73,7 +76,7 @@
 					</td>
 				</tr>
 			</table>
-			<form method="post" name="search" action="searchBoard.jsp">
+			<form method="post" name="search" action="searchBoard.jsp" autocomplete="off">
 				<table class="pull-right">
 					<tr>
 						<td><select class="form-control" name="searchField">
