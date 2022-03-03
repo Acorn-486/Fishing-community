@@ -11,6 +11,10 @@
   
   낚시 포인트는 카카오지도api에 클러스터를 사용해서 위치들을 등록해 놓았고, 회원가입의 주소는 입력은 다음 주소api를 사용했습니다.
 ## 2. 기술
+  1. Web Front : ```HTML5```, ```CSS```, ```JavaScript```, ```Bootstrap```
+  2. Web Server : ```Java```, ```ApacheTomcat```
+  3. DBMS : ```MySQL```
+  4. 개발환경 : ```Eclipse```
 
 ## 3. DB EER Diagram
 
