@@ -83,10 +83,10 @@ request.setCharacterEncoding("UTF-8");
 					</td>
 				</tr>
 			</table>
-			<form method="post" name="search" action="searchBoard.jsp">
+			<form method="post" name="search" action="searchBoard.jsp" autocomplete="off">
 				<table class="pull-right">
 					<tr>
-						<td><select class="form-control" name="searchField" autocomplete="off">
+						<td><select class="form-control" name="searchField">
 							<option value="boardTitle">제목</option>
 							<option value="userID">작성자</option>
 						</select></td>
