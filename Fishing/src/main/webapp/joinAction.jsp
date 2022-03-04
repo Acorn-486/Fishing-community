@@ -72,7 +72,7 @@ request.setCharacterEncoding("UTF-8");
 		script.println("alert('성별을 선택하지 않았습니다.')");
 		script.println("history.back()");
 		script.println("</script>");
-	} else if (user.getUserGender() == null) {
+	} else if (user.getUserPhone() == null) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('핸드폰번호를 입력하지 않았습니다.')");

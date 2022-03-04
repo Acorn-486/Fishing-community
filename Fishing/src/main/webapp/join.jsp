@@ -52,8 +52,7 @@ window.onload = function(){
 					</tr>
 					<tr>
 						<td>이메일</td>
-						<td><input type="email" class="form-control"
-							placeholder="이메일" name="userEmail" maxlength="20"></td>
+						<td><input type="email" class="form-control" placeholder="이메일" name="userEmail" maxlength="20"></td>
 					</tr>
 					<tr>
 						<td>성별</td>
@@ -73,7 +72,7 @@ window.onload = function(){
 					</tr>
 					<tr>
 						<td>주소</td>
-						<td><input type="text" class="form-control" id="address" name="userAddress" readonly></td>
+						<td><input type="text" class="form-control" id="address" name="userAddress" placeholder="주소 입력은 여기를 클릭하세요" readonly></td>
 					</tr>
 					<tr>
 						<td>상세주소</td>
