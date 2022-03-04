@@ -24,3 +24,12 @@
   ![사이트맵](https://user-images.githubusercontent.com/97069940/156521264-a3f5f7cf-5aa5-4621-b1dd-1ec4f221e09c.JPG)
   
 ## 5. 기능
+  1. 회원 CRUD
+  2. 로그인
+  3. 게시물 CRUD
+  4. 댓글
+  5. 페이징
+  6. 게시물 검색
+  7. 상품 장바구니 담기/보기
+  8. 지도 API 사용해서 포인트 구현
+  9. 회원가입시 주소 API 사용
