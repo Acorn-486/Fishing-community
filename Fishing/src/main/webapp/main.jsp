@@ -10,6 +10,12 @@
 <title>Fishing</title>
 </head>
 <body>
+	<%
+	String userID = null;
+	if (session.getAttribute("userID") != null) {
+		userID = (String) session.getAttribute("userID");
+	}
+	%>
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<div class="container">

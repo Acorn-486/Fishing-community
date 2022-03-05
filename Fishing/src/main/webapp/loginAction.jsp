@@ -33,7 +33,7 @@
 		session.setAttribute("userID", user.getUserID());
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("history.go(-2)");
+		script.println("location.href = 'main.jsp'");
 		script.println("</script>");
 	} else if (result == 0) {
 		PrintWriter script = response.getWriter();

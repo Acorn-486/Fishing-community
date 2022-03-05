@@ -4,8 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-import board.Board;
+import java.util.ArrayList;
 
 public class UserDAO {
 
@@ -96,6 +95,33 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public ArrayList<User> getList() {
+		String SQL = "SELECT * FROM USER WHERE NOT userID IN ('admin')";
+		ArrayList<User> list = new ArrayList<User>();
+		
+		try {
+			PreparedStatement pstmt = con.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				User user = new User();
+				user.setUserID(rs.getString(1));
+				user.setUserPassword(rs.getString(2));
+				user.setUserName(rs.getString(3));
+				user.setUserGender(rs.getString(4));
+				user.setUserEmail(rs.getString(5));
+				user.setUserBirth(rs.getString(6));
+				user.setUserPhone(rs.getString(7));
+				user.setUserZipCode(rs.getString(8));
+				user.setUserDetail(rs.getString(9));
+				user.setUserAddress(rs.getString(10));
+				list.add(user);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 	public int update(String userID, String userPassword, String userName, String userGender, String userEmail, String userBirth, String userPhone, String userZipCode, String userDetail, String userAddress) {
