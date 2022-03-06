@@ -110,13 +110,13 @@
 										<td align="left"><%= list.get(i).getCommentContent() %></td>
 										<td align="right">
 											<%
-												if(list.get(i).getUserID() != null && list.get(i).getUserID().equals(userID)){
+												if(list.get(i).getUserID().equals(userID) || userID.equals("admin")) {
 											%>
+												<a onclick="nwindow(<%= boardID %>, <%= list.get(i).getCommentID() %>)" class="btn btn-warning btn-sm">수정</a>
 												<a onclick="return confirm('정말로 삭제하시겠습니까?')" href = "commentDeleteAction.jsp?boardID=<%= boardID %>&commentID=<%= list.get(i).getCommentID() %>" class="btn btn-danger btn-sm">삭제</a>
-																	
 											<%
 												}
-											%>	
+											%>
 										</td>
 										</tr>
 									</tbody>
@@ -130,9 +130,12 @@
 				</table>
 			</div>
 		</div>
+		<%
+		if (userID != null) {
+		%>
 		<div class="container">
 			<div class="form-group">
-			<form method="post" action="commentAction.jsp?boardID=<%=boardID%>">
+			<form method="post" action="commentAction.jsp?boardID=<%=boardID%>" autocomplete=off>
 					<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 						<tr>
 							<td style="border-bottom:none;" valign="middle"><%=userID %></td>
@@ -142,7 +145,19 @@
 					</table>
 			</form>
 			</div>
-		</div>		
+		</div>
+		<%
+		}
+		%>
+		
+		<script type="text/javascript">
+			function nwindow(boardID, commentID){
+			window.name = "commentParant";
+			var url= "commentUpdate.jsp?boardID=" + boardID + "&commentID=" + commentID;
+			window.open(url,"","width=550, height=200, left=500, top=500");
+			}
+		</script>
+		
 	<script src="resource/js/bootstrap.js"></script>
 </body>
 </html>

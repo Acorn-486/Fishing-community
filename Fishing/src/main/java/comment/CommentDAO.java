@@ -97,7 +97,7 @@ public class CommentDAO {
 	}
 	
 	public Comment getComment(int commentID) {
-		String SQL = "SELECT * FROM comment WHERE commentID = ? ORDER BY commentID DESC";
+		String SQL = "SELECT * FROM comment WHERE commentID = ?";
 		
 		try {
 			PreparedStatement pstmt = con.prepareStatement(SQL);
@@ -120,12 +120,13 @@ public class CommentDAO {
 	}
 	
 	public int update(int commentID, String commentContent) {
-		String SQL = "UPDATE comment SET commentContent = ? WHERE commentID LIKE ?";
+		String SQL = "UPDATE comment SET commentContent = ?, commentDate = ? WHERE commentID = ?";
 		
 		try {
 			PreparedStatement pstmt = con.prepareStatement(SQL);
 			pstmt.setString(1, commentContent);
-			pstmt.setInt(2, commentID);
+			pstmt.setString(2, getDate());
+			pstmt.setInt(3, commentID);
 			
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
