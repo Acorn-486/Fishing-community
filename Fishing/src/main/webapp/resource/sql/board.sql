@@ -6,7 +6,8 @@ create table board(
 	userID varchar(20),
 	boardDate datetime,
 	boardContent varchar(4000),
-	boardCnt int
+	boardCnt int,
+	boardNotice int
 );
 
 select * from board;

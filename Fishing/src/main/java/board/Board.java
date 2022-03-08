@@ -8,6 +8,7 @@ public class Board {
 	private String boardDate;
 	private String boardContent;
 	private int boardCnt;
+	private int boardNotice;
 	
 	public int getBoardID() {
 		return boardID;
@@ -44,5 +45,11 @@ public class Board {
 	}
 	public void setBoardCnt(int boardCnt) {
 		this.boardCnt = boardCnt;
+	}
+	public int getBoardNotice() {
+		return boardNotice;
+	}
+	public void setBoardNotice(int boardNotice) {
+		this.boardNotice = boardNotice;
 	}
 }
