@@ -56,7 +56,7 @@ public class BoardDAO {
 	}
 	
 	public int write(String boardTitle, String userID, String boardContent) {
-		String SQL = "INSERT INTO BOARD VALUES (?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO BOARD VALUES (?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement pstmt = con.prepareStatement(SQL);
@@ -66,6 +66,27 @@ public class BoardDAO {
 			pstmt.setString(4, getDate());
 			pstmt.setString(5, boardContent);
 			pstmt.setInt(6, 0);
+			pstmt.setInt(7, 0);
+			
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public int noticeWrite(String boardTitle, String boardContent) {
+		String SQL = "INSERT INTO BOARD VALUES (?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			PreparedStatement pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, getNext());
+			pstmt.setString(2, boardTitle);
+			pstmt.setString(3, "관리자");
+			pstmt.setString(4, getDate());
+			pstmt.setString(5, boardContent);
+			pstmt.setInt(6, 0);
+			pstmt.setInt(7, 1);
 			
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -75,7 +96,7 @@ public class BoardDAO {
 	}
 	
 	public ArrayList<Board> getList(int pageNumber) {
-		String SQL = "SELECT * FROM BOARD WHERE boardID < ? ORDER BY boardID DESC LIMIT 10";
+		String SQL = "SELECT * FROM BOARD WHERE boardID < ? and boardNotice = 0 ORDER BY boardID DESC LIMIT 10";
 		ArrayList<Board> list = new ArrayList<Board>();
 		
 		try {
@@ -90,6 +111,32 @@ public class BoardDAO {
 				board.setBoardDate(rs.getString(4));
 				board.setBoardContent(rs.getString(5));
 				board.setBoardCnt(rs.getInt(6));
+				board.setBoardNotice(rs.getInt(7));
+				list.add(board);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public ArrayList<Board> getNoticeList(int pageNumber) {
+		String SQL = "SELECT * FROM BOARD WHERE boardID < ? and boardNotice = 1 ORDER BY boardID DESC LIMIT 10";
+		ArrayList<Board> list = new ArrayList<Board>();
+		
+		try {
+			PreparedStatement pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Board board = new Board();
+				board.setBoardID(rs.getInt(1));
+				board.setBoardTitle(rs.getString(2));
+				board.setUserID(rs.getString(3));
+				board.setBoardDate(rs.getString(4));
+				board.setBoardContent(rs.getString(5));
+				board.setBoardCnt(rs.getInt(6));
+				board.setBoardNotice(rs.getInt(7));
 				list.add(board);
 			}
 		} catch (Exception e) {
@@ -116,6 +163,7 @@ public class BoardDAO {
 				board.setBoardDate(rs.getString(4));
 				board.setBoardContent(rs.getString(5));
 				board.setBoardCnt(rs.getInt(6));
+				board.setBoardNotice(rs.getInt(7));
 				list.add(board);
 			}
 		} catch (Exception e) {

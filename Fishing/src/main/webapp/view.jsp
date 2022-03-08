@@ -61,14 +61,14 @@
 						<td>조회수</td>
 						<td colspan="2"><%= board.getBoardCnt() + 1 %><% boardDAO.updateBoardCnt(boardID); %></td>
 					</tr>
+				</tbody>
 					<tr>
 						<td>내용</td>
 						<td colspan="2" style="min-height: 200px; text-align: left;"><%= board.getBoardContent() %></td>
 					</tr>
-				</tbody>
 				<tr>
 					<td colspan="6">
-						<a href="board.jsp" class="btn btn-secondary">목록</a>
+						<a onclick="history.back()" class="btn btn-secondary">목록</a>
 						<%
 							if (userID != null) {
 								if (userID.equals(board.getUserID()) || userID.equals("admin")) {

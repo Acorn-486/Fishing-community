@@ -34,7 +34,6 @@ request.setCharacterEncoding("UTF-8");
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
-						<th style="background-color: #eeeeee; text-align: center;">번호</th>
 						<th style="background-color: #eeeeee; text-align: center;">제목</th>
 						<th style="background-color: #eeeeee; text-align: center;">작성자</th>
 						<th style="background-color: #eeeeee; text-align: center;">작성일</th>
@@ -48,7 +47,6 @@ request.setCharacterEncoding("UTF-8");
 						for (int i = 0; i < list.size(); i++) {
 					%>
 						<tr>
-							<td><%= list.get(i).getBoardID() %></td>
 							<td onClick="location.href='view.jsp?boardID=<%=list.get(i).getBoardID() %>'" style="cursor:pointer;"><%= list.get(i).getBoardTitle() %></td>
 							<td><%= list.get(i).getUserID() %></td>
 							<td><%= list.get(i).getBoardDate().substring(0, 11) + list.get(i).getBoardDate().substring(11, 13) + "시 " + list.get(i).getBoardDate().substring(14, 16) + "분" %></td>

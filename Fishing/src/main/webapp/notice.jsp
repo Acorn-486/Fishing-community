@@ -17,6 +17,11 @@ request.setCharacterEncoding("UTF-8");
 </head>
 <body>
 	<%
+	String userID = null;
+	if (session.getAttribute("userID") != null) {
+		userID = (String) session.getAttribute("userID");
+	}
+	
 	int pageNumber = 1;
 	if (request.getParameter("pageNumber") != null) {
 		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
@@ -33,7 +38,6 @@ request.setCharacterEncoding("UTF-8");
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
-						<th style="background-color: #eeeeee; text-align: center;">번호</th>
 						<th style="background-color: #eeeeee; text-align: center;">제목</th>
 						<th style="background-color: #eeeeee; text-align: center;">작성일</th>
 						<th style="background-color: #eeeeee; text-align: center;">조회수</th>
@@ -42,11 +46,10 @@ request.setCharacterEncoding("UTF-8");
 				<tbody>
 					<%
 						BoardDAO boardDAO = new BoardDAO();
-						ArrayList<Board> list = boardDAO.getList(pageNumber);
+						ArrayList<Board> list = boardDAO.getNoticeList(pageNumber);
 						for (int i = 0; i < list.size(); i++) {
 					%>
 						<tr>
-							<td><%= list.get(i).getBoardID() %></td>
 							<td onClick="location.href='view.jsp?boardID=<%=list.get(i).getBoardID() %>'" style="cursor:pointer;"><%= list.get(i).getBoardTitle() %></td>
 							<td><%= list.get(i).getBoardDate().substring(0, 11) + list.get(i).getBoardDate().substring(11, 13) + "시 " + list.get(i).getBoardDate().substring(14, 16) + "분" %></td>
 							<td><%= list.get(i).getBoardCnt() %></td>
@@ -61,15 +64,17 @@ request.setCharacterEncoding("UTF-8");
 						<%
 							if (pageNumber != 1) {
 						%>
-							<a href="board.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn-success btn-arraw-left">이전</a>
+							<a href="notice.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn-success btn-arraw-left">이전</a>
 						<%
 							} if (boardDAO.nextPage(pageNumber + 1)) {
 						%>
-							<a href="board.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn-success btn-arraw-left">다음</a>
+							<a href="notice.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn-success btn-arraw-left">다음</a>
 						<%
 							}
 						%>
-						<a href="write.jsp" class="btn btn-secondary">글쓰기</a>
+						<% if (userID != null && userID.equals("admin")) { %>
+						<a href="noticeWrite.jsp" class="btn btn-secondary">글쓰기</a>
+						<% } %>
 					</td>
 				</tr>
 			</table>

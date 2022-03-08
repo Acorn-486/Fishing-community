@@ -37,19 +37,11 @@ request.setCharacterEncoding("UTF-8");
 		commentID = Integer.parseInt(request.getParameter("commentID"));
 	}
 	
+	Comment comment = new CommentDAO().getComment(commentID);
 	if (commentID == 0) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('존재하지 않는 댓글입니다.')");
-		script.println("history.back()");
-		script.println("</script>");
-	}
-	
-	Comment comment = new CommentDAO().getComment(commentID);
-	if (!userID.equals(comment.getUserID())) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('권한이 없습니다.')");
 		script.println("history.back()");
 		script.println("</script>");
 	} else {
