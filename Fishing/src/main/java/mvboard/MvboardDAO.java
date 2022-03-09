@@ -42,7 +42,7 @@ public class MvboardDAO {
 	}
 	
 	public int getNext() {
-		String SQL = "SELECT mvboardID FROM mvboard ORDER BY boardID DESC";
+		String SQL = "SELECT mvboardID FROM mvboard ORDER BY mvboardID DESC";
 		
 		try {
 			PreparedStatement pstmt = con.prepareStatement(SQL);

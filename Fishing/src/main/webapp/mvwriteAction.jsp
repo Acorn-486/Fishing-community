@@ -28,7 +28,7 @@ request.setCharacterEncoding("UTF-8");
 		String mvboardContent = multi.getParameter("mvboardContent");
 		
 		mvboard.setMvboardTitle(mvboardTitle);
-		mvboard.setMvboardUrl("https://youtu.be/" + mvboardUrl);
+		mvboard.setMvboardUrl(mvboardUrl);
 		mvboard.setMvboardContent(mvboardContent);
 	%>
 	<%
