@@ -67,6 +67,7 @@
 					%>
 					<li class="nav-item"><a class="nav-link" href="notice.jsp">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="point.jsp">낚시 포인트</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">낚시 강의</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">낚시 용품</a>
