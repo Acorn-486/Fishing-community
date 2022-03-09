@@ -4,6 +4,7 @@ public class Mvboard {
 
 	private int mvboardID;
 	private String mvboardTitle;
+	private String mvboardUrl;
 	private String mvboardDate;
 	private String mvboardContent;
 	private int mvboardCnt;
@@ -19,6 +20,12 @@ public class Mvboard {
 	}
 	public void setMvboardTitle(String mvboardTitle) {
 		this.mvboardTitle = mvboardTitle;
+	}
+	public String getMvboardUrl() {
+		return mvboardUrl;
+	}
+	public void setMvboardUrl(String mvboardUrl) {
+		this.mvboardUrl = mvboardUrl;
 	}
 	public String getMvboardDate() {
 		return mvboardDate;
