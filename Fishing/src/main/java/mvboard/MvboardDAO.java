@@ -198,7 +198,7 @@ public class MvboardDAO {
 		return -1;
 	}
 	
-	public void updateBoardCnt(int mvboardID) {
+	public void updateMvboardCnt(int mvboardID) {
 		String SQL = "UPDATE mvboard SET mvboardCnt = mvboardCnt + 1 WHERE mvboardID = ?";
 		
 		try {
