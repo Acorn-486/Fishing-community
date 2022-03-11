@@ -40,7 +40,7 @@
 							<td><input type="text" class="form-control" placeholder="제목" name="mvboardTitle" maxlength="50"></td>
 						</tr>
 						<tr>
-							<td><input type="text" class="form-control" placeholder="유튜브 주소" name="mvboardUrl"></td>
+							<td>https://youtu.be/<input type="text" class="form-control" placeholder="유튜브 주소" name="mvboardUrl"></td>
 						</tr>
 						<tr>
 							<td><textarea class="form-control" placeholder="영상소개" name="mvboardContent" maxlength="4000" style="height: 300px"></textarea></td>

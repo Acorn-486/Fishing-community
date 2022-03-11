@@ -60,7 +60,7 @@
 				</tbody>
 					<tr>
 						<td>강의</td>
-						<td colspan="2" style="min-height: 200px; text-align: left;"><%= mvboard.getMvboardUrl() %></td>
+						<td><iframe width="900" height="506" src="https://www.youtube.com/embed/<%= mvboard.getMvboardUrl() %>" title="YouTube video player"></iframe></td>
 					</tr>
 					<tr>
 						<td>내용</td>
