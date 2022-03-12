@@ -18,7 +18,7 @@
   4. 개발환경 : ```Eclipse```
 
 ## 3. DB EER Diagram
-  ![EER Diagram](https://user-images.githubusercontent.com/97069940/156514740-efe93c72-b3e1-4c4c-897f-3f229139fb4e.JPG)
+  ![EER Diagram](https://user-images.githubusercontent.com/97069940/158005579-c693b6df-445e-4949-a894-2d1b60b89045.JPG)
   
 ## 4. 사이트맵
   ![사이트맵](https://user-images.githubusercontent.com/97069940/156521264-a3f5f7cf-5aa5-4621-b1dd-1ec4f221e09c.JPG)
