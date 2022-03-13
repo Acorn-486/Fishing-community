@@ -24,7 +24,7 @@ request.setCharacterEncoding("UTF-8");
 			
 	
 		String productName = multi.getParameter("productName");
-		String productPrice = multi.getParameter("productPrice");
+		Integer productPrice = Integer.parseInt(multi.getParameter("productPrice"));
 		String productDetail = multi.getParameter("productDetail");
 		String productCategory = multi.getParameter("productCategory");
 		String productImage = multi.getFilesystemName("productImage");
@@ -67,7 +67,7 @@ request.setCharacterEncoding("UTF-8");
 			script.println("alert('상품명을 입력하지 않았습니다.')");
 			script.println("history.back()");
 			script.println("</script>");
-		} else if (product.getProductPrice() == null) {
+		} else if (product.getProductPrice() == 0) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('상품 가격을 입력하지 않았습니다.')");
